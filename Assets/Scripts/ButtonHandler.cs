@@ -7,7 +7,12 @@ public class ButtonHandler : MonoBehaviour
 {
     public void OnStartButtonClick()
     {
-        SceneManager.LoadScene("CaseScene"); 
+        SceneManager.LoadScene("IntroScene"); 
+    }
+
+    public void OnSkipButtonClick()
+    {
+        SceneManager.LoadScene("CaseScene");
     }
 
     public void On201ButtonClick(){

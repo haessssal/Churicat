@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Clue
   - Object
+  - KeyClue
   layers:
   - Default
   - TransparentFX
