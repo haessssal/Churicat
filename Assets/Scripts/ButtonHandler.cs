@@ -7,6 +7,26 @@ public class ButtonHandler : MonoBehaviour
 {
     public void OnStartButtonClick()
     {
-        SceneManager.LoadScene("MapScene"); 
+        SceneManager.LoadScene("CaseScene"); 
+    }
+
+    public void On201ButtonClick(){
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void OnCase1ButtonClick(){
+        SceneManager.LoadScene("Map1Scene");
+    }
+
+    public void OnOptionButtonClick(){
+
+    }
+
+    public void OnPauseButtonClick(){
+
+    }
+
+    public void OnHomeButtonClick(){
+
     }
 }
