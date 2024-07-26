@@ -7,13 +7,21 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public TMP_Text Clicknum;
-    private int cnt = 10;
+    public TMP_Text KeyCluenum;
+    private int KeyCluecnt = 0;
+    private int Touchcnt = 15;
+    private int Found = 0;
 
     public List<Image> emptyBoxes;
+
+    public List<GameObject> cluePrefabs;
+    public List<GameObject> keyCluePrefabs;
+
+    public PopupManager popupManager;
     
     void Start()
     {
-        Clicknum.text = cnt.ToString();
+        Clicknum.text = Touchcnt.ToString();
     }
 
     void Update()
@@ -29,6 +37,33 @@ public class UIManager : MonoBehaviour
         {
             CheckTouch(Input.GetTouch(0).position);
         }
+    }
+
+    // TODO: when retry
+    public void init()
+    {
+        Touchcnt = 15;
+        Found = 0;
+        KeyCluecnt = 0;
+
+        Clicknum.text = Touchcnt.ToString();
+        KeyCluenum.text = $"{KeyCluecnt} / 3";
+
+        // Clear empty boxes
+        foreach (Image box in emptyBoxes)
+        {
+            foreach (Transform child in box.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        ResetGameObjects();
+    }
+
+    void ResetGameObjects()
+    {
+        // TODO
     }
 
     void CheckTouch(Vector2 screenPosition)
@@ -47,6 +82,12 @@ public class UIManager : MonoBehaviour
                 if (hit.collider.CompareTag("Clue") || hit.collider.CompareTag("KeyClue"))
                 {
                     AddImageToEmptyBox(hit.collider.gameObject);
+                    Found++;
+                }
+
+                if (hit.collider.CompareTag("KeyClue"))
+                {
+                    UpdateKeyClueCount();
                 }
             }
         }
@@ -54,15 +95,25 @@ public class UIManager : MonoBehaviour
 
     void DecreaseCount()
     {
-        if (cnt > 0)
+        if (Touchcnt > 0 && Found < 10)
         {
-            cnt--;
-            Clicknum.text = cnt.ToString();
+            Touchcnt--;
+            Clicknum.text = Touchcnt.ToString();
+        }
+
+        // TODO
+        // Over1Popup: get star x 3
+        // Over2Popup: get star x 2
+        // Over3Popup: get star x 1
+        // Over4Popup: get star x 0
+        else if (Touchcnt > 0 && Found == 10)
+        {
+            popupManager.OpenPopup("Over1");
         }
 
         else
         {
-            // popup
+            // popupManager.OpenPopup("Over4");
         }
     }
 
@@ -106,4 +157,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void UpdateKeyClueCount()
+    {
+        KeyCluecnt++;
+
+        KeyCluenum.text = $"{KeyCluecnt} / 3";
+
+        if (KeyCluecnt >= 3)
+        {
+            // popup
+        }
+    }
 }
