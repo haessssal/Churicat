@@ -37,6 +37,8 @@ public class UIManager : MonoBehaviour
         {
             CheckTouch(Input.GetTouch(0).position);
         }
+
+        OpenOverPopup();
     }
 
     // TODO: when retry
@@ -100,21 +102,6 @@ public class UIManager : MonoBehaviour
             Touchcnt--;
             Clicknum.text = Touchcnt.ToString();
         }
-
-        // TODO
-        // Over1Popup: get star x 3
-        // Over2Popup: get star x 2
-        // Over3Popup: get star x 1
-        // Over4Popup: get star x 0
-        else if (Touchcnt > 0 && Found == 10)
-        {
-            popupManager.OpenPopup("Over1");
-        }
-
-        else
-        {
-            // popupManager.OpenPopup("Over4");
-        }
     }
 
     void AddImageToEmptyBox(GameObject clueObject)
@@ -166,6 +153,33 @@ public class UIManager : MonoBehaviour
         if (KeyCluecnt >= 3)
         {
             // popup
+        }
+    }
+
+    void OpenOverPopup()
+    {
+        // Over1Popup: get star x 3
+        // Over2Popup: get star x 2
+        // Over3Popup: get star x 1
+        // Over4Popup: get star x 0
+        if (Touchcnt > 0 && Found == 10)
+        {
+            popupManager.OpenPopup("Over1");
+        }
+
+        else if (Touchcnt == 0 && Found >= 7)
+        {
+            popupManager.OpenPopup("Over2");
+        }
+
+        else if (Touchcnt == 0 && Found >= 5)
+        {
+            popupManager.OpenPopup("Over3");
+        }
+
+        else if (Touchcnt == 0 && Found <= 4)
+        {
+            popupManager.OpenPopup("Retry");
         }
     }
 }

@@ -8,6 +8,7 @@ public class ButtonHandler : MonoBehaviour
     public PopupManager popupManager;
     public StarManager starManager;
     public UIManager uiManager;
+    public GameManager gameManager;
 
     public void OnStartButtonClick()
     {
@@ -20,7 +21,19 @@ public class ButtonHandler : MonoBehaviour
     }
 
     public void On201ButtonClick(){
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Game1Scene");
+    }
+
+    public void On202ButtonClick(){
+        SceneManager.LoadScene("Game2Scene");
+    }
+    
+    public void On301ButtonClick(){
+        SceneManager.LoadScene("Game3Scene");
+    }
+    
+    public void On302ButtonClick(){
+        SceneManager.LoadScene("Game4Scene");
     }
 
     public void OnCase1ButtonClick(){
@@ -41,6 +54,11 @@ public class ButtonHandler : MonoBehaviour
     {
         // popupManager.OpenPopup("Home");
         SceneManager.LoadScene("CaseScene");
+    }
+
+    public void OnGetoutButtonClick()
+    {
+        SceneManager.LoadScene("Map1Scene");
     }
 
     public void OnHintButtonClick()
@@ -74,6 +92,16 @@ public class ButtonHandler : MonoBehaviour
         starManager.Get3Star();
     }
 
+    public void OnGet2starButtonClick()
+    {
+        starManager.Get2Star();
+    }
+
+    public void OnGet1starButtonClick()
+    {
+        starManager.Get1Star();
+    }
+
     public void OnStarRetryButtonClick(GameObject starretryButton)
     {
         starManager.LoseStar();
@@ -84,5 +112,10 @@ public class ButtonHandler : MonoBehaviour
     public void OnAdRetryButtonClick()
     {
         // TODO
+    }
+
+    public void OnResetButtonClick()
+    {
+        GameManager.ClearAllSaveData();
     }
 }

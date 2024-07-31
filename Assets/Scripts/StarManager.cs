@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;    
 
 public class StarManager : MonoBehaviour
 {
-    public static int StarInt;
-    public static TMP_Text StarText;
+    public int StarInt = 10;
+    public TMP_Text StarText;
     // obtained star num variable
+
+    public GameManager gameManager;
 
     private void Awake()
     {
@@ -17,47 +20,40 @@ public class StarManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        PlayerPrefs.SetInt("Star", StarInt);
-        UpdateStarText();
-    }
-
-    void Update()
-    {
-        PlayerPrefs.SetInt("Star", StarInt);
-        UpdateStarText();
-    }
-
     public void Get3Star()
     {
         StarInt += 3;
         UpdateStarText();
+        gameManager.Save();
     }
      
     public void Get2Star()
     {
         StarInt += 2;
         UpdateStarText();
+        gameManager.Save();
     }
 
     public void Get1Star()
     {
         StarInt += 1;
         UpdateStarText();
+        gameManager.Save();
     }
 
     public void LoseStar()
     {
         StarInt -= 2;
         UpdateStarText();
+        gameManager.Save();
     }
 
-    private void UpdateStarText()
+    public void UpdateStarText()
     {
         if (StarText != null)
         {
             StarText.text = $"STAR x {StarInt}";
         }
     }
+
 }
