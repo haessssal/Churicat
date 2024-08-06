@@ -73,6 +73,11 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnStarHintButtonClick()
     {
+        if (starManager.StarInt >= 2)
+        {
+            uiManager.ShowRandomHint();
+        }
+
         starManager.LoseStar();
     }
 
@@ -104,9 +109,18 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnStarRetryButtonClick(GameObject starretryButton)
     {
-        starManager.LoseStar();
-        popupManager.ClosePopup(starretryButton);
-        uiManager.init();
+        if (starManager.StarInt >= 2)
+        {
+            starManager.LoseStar();
+            popupManager.ClosePopup(starretryButton);
+            uiManager.init();
+        }
+
+        else
+        {
+            popupManager.OpenPopup("Cantbuy");
+        }
+        
     }
 
     public void OnAdRetryButtonClick()

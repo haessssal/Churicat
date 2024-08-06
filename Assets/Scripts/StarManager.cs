@@ -11,6 +11,7 @@ public class StarManager : MonoBehaviour
     // obtained star num variable
 
     public GameManager gameManager;
+    public PopupManager popupManager;
 
     private void Awake()
     {
@@ -43,9 +44,18 @@ public class StarManager : MonoBehaviour
 
     public void LoseStar()
     {
-        StarInt -= 2;
-        UpdateStarText();
-        gameManager.Save();
+        if (StarInt >= 2)
+        {
+            StarInt -= 2;
+            if (StarInt < 0) StarInt = 0; 
+            UpdateStarText();
+            gameManager.Save();
+        }
+
+        else
+        {
+            popupManager.OpenPopup("Cantbuy");
+        }
     }
 
     public void UpdateStarText()

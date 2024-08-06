@@ -15,6 +15,7 @@ public class PopupManager : MonoBehaviour
     public GameObject Over2Popup;
     public GameObject Over3Popup;
     public GameObject RetryPopup;
+    public GameObject CantbutPopup;
 
     public void Start()
     {
@@ -26,6 +27,7 @@ public class PopupManager : MonoBehaviour
         HomePopup.SetActive(false);
         Over1Popup.SetActive(false);
         RetryPopup.SetActive(false);
+        CantbutPopup.SetActive(false);
     }
 
     public void OpenPopup(string popupName)
@@ -50,13 +52,16 @@ public class PopupManager : MonoBehaviour
                 Over1Popup.SetActive(true);
                 break;
             case "Over2":
-                Over1Popup.SetActive(true);
+                Over2Popup.SetActive(true);
                 break;
             case "Over3":
-                Over1Popup.SetActive(true);
+                Over3Popup.SetActive(true);
                 break;
             case "Retry":
                 RetryPopup.SetActive(true);
+                break;
+            case "Cantbuy":
+                CantbutPopup.SetActive(true);
                 break;
         }
     }

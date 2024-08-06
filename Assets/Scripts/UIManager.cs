@@ -8,16 +8,31 @@ public class UIManager : MonoBehaviour
 {
     public TMP_Text Clicknum;
     public TMP_Text KeyCluenum;
+    public TMP_Text HintText;
+
     private int KeyCluecnt = 0;
     private int Touchcnt = 15;
     private int Found = 0;
 
     public List<Image> emptyBoxes;
 
-    public List<GameObject> cluePrefabs;
-    public List<GameObject> keyCluePrefabs;
-
     public PopupManager popupManager;
+
+    private List<string> hints = new List<string>
+    {
+        "Hint 1",
+        "Hint 2",
+        "Hint 3",
+        "Hint 4",
+        "Hint 5",
+        "Hint 6",
+        "Hint 7",
+        "Hint 8",
+        "Hint 9",
+        "Hint 10"
+    };
+
+    private List<string> usedHints = new List<string>();
     
     void Start()
     {
@@ -181,5 +196,22 @@ public class UIManager : MonoBehaviour
         {
             popupManager.OpenPopup("Retry");
         }
+    }
+
+    public void ShowRandomHint()
+    {
+        if (hints.Count == 0)
+        {
+            HintText.text = "No more hints available";
+            return;
+        }
+
+        int randomIndex = Random.Range(0, hints.Count);
+        string randomHint = hints[randomIndex];
+
+        HintText.text = randomHint;
+
+        usedHints.Add(randomHint);
+        hints.RemoveAt(randomIndex);
     }
 }
