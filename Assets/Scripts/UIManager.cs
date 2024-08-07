@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text Clicknum;
     public TMP_Text KeyCluenum;
     public TMP_Text HintText;
+    public PopupManager popupManager;
 
     private int KeyCluecnt = 0;
     private int Touchcnt = 15;
@@ -16,7 +17,7 @@ public class UIManager : MonoBehaviour
 
     public List<Image> emptyBoxes;
 
-    public PopupManager popupManager;
+    private Dictionary<GameObject, Vector3> originalPositions = new Dictionary<GameObject, Vector3>();
 
     private List<string> hints = new List<string>
     {
@@ -37,6 +38,22 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         Clicknum.text = Touchcnt.ToString();
+
+        // save the original location of the game object
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Object"))
+        {
+            originalPositions[obj] = obj.transform.position;
+        }
+
+        foreach (GameObject clue in GameObject.FindGameObjectsWithTag("Clue"))
+        {
+            originalPositions[clue] = clue.transform.position;
+        }
+
+        foreach (GameObject keyClue in GameObject.FindGameObjectsWithTag("KeyClue"))
+        {
+            originalPositions[keyClue] = keyClue.transform.position;
+        }
     }
 
     void Update()
@@ -56,7 +73,7 @@ public class UIManager : MonoBehaviour
         OpenOverPopup();
     }
 
-    // TODO: when retry
+    // when retry
     public void init()
     {
         Touchcnt = 15;
@@ -75,12 +92,17 @@ public class UIManager : MonoBehaviour
             }
         }
 
+        // Reset game objects
         ResetGameObjects();
     }
 
     void ResetGameObjects()
     {
-        // TODO
+        foreach (var kvp in originalPositions)
+        {
+            kvp.Key.transform.position = kvp.Value;
+            kvp.Key.SetActive(true); 
+        }
     }
 
     void CheckTouch(Vector2 screenPosition)

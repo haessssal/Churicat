@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SwipeMap : MonoBehaviour
 {
     public GameObject scrollbar;
     float scroll_pos = 0;
     float[] pos;
+
+    public Image AnimalImage;  
+    public Sprite[] Animalimages; 
+    public TMP_Text AnimalText;
+    public string[] Animaltexts;
+    public TMP_Text Homenum;
+    public string[] Homenums;
 
     // Start is called before the first frame update
     void Start()
@@ -21,15 +29,17 @@ public class SwipeMap : MonoBehaviour
         pos = new float[transform.childCount];
         float distance = 1f / (pos.Length - 1f);
 
-        for (int i = 0; i < pos.Length; i++)
+        for (int i = 0; i < pos.Length; i++)    
         {
             pos[i] = distance * i;
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))  // when clicked
         {
             scroll_pos = scrollbar.GetComponent<Scrollbar>().value;
-        } else {
+        } 
+        
+        else {
             for (int i = 0; i < pos.Length; i++)
             {
                 if (scroll_pos < pos[i] + (distance/2) && scroll_pos > pos[i] - (distance/2))
@@ -43,6 +53,7 @@ public class SwipeMap : MonoBehaviour
         {
             if (scroll_pos < pos[i] + (distance/2) && scroll_pos > pos[i] - (distance/2))
             {                    
+                // expand selected object
                 transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.1f);
                 
                 for (int a = 0; a < pos.Length; a++)
@@ -52,6 +63,11 @@ public class SwipeMap : MonoBehaviour
                         transform.GetChild(a).localScale = Vector2.Lerp(transform.GetChild(a).localScale, new Vector2(0.8f, 0.8f), 0.1f);
                     }
                 }
+
+                // animal image, text change
+                AnimalImage.sprite = Animalimages[i];
+                AnimalText.text = Animaltexts[i];
+                Homenum.text = Homenums[i];
             }
         }
     }

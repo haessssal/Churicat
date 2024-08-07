@@ -8,7 +8,11 @@ public class ButtonHandler : MonoBehaviour
     public PopupManager popupManager;
     public StarManager starManager;
     public UIManager uiManager;
-    public GameManager gameManager;
+
+    private int game1retrycnt = 0;
+    private int game2retrycnt = 0;
+    private int game3retrycnt = 0;
+    private int game4retrycnt = 0;
 
     public void OnStartButtonClick()
     {
@@ -112,6 +116,7 @@ public class ButtonHandler : MonoBehaviour
         if (starManager.StarInt >= 2)
         {
             starManager.LoseStar();
+            game1retrycnt++;
             popupManager.ClosePopup(starretryButton);
             uiManager.init();
         }
@@ -131,5 +136,10 @@ public class ButtonHandler : MonoBehaviour
     public void OnResetButtonClick()
     {
         GameManager.ClearAllSaveData();
+    }
+
+    public void OnInvenButtonClick()
+    {
+        popupManager.OpenPopup("Inventory");
     }
 }

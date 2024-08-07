@@ -16,6 +16,7 @@ public class PopupManager : MonoBehaviour
     public GameObject Over3Popup;
     public GameObject RetryPopup;
     public GameObject CantbutPopup;
+    public GameObject InventoryPopup;
 
     public void Start()
     {
@@ -28,6 +29,7 @@ public class PopupManager : MonoBehaviour
         Over1Popup.SetActive(false);
         RetryPopup.SetActive(false);
         CantbutPopup.SetActive(false);
+        InventoryPopup.SetActive(false);
     }
 
     public void OpenPopup(string popupName)
@@ -62,6 +64,9 @@ public class PopupManager : MonoBehaviour
                 break;
             case "Cantbuy":
                 CantbutPopup.SetActive(true);
+                break;
+            case "Inventory":
+                InventoryPopup.SetActive(true);
                 break;
         }
     }
