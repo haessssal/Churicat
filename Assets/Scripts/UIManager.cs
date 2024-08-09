@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class UIManager : MonoBehaviour
     public List<Image> emptyBoxes;
 
     private Dictionary<GameObject, Vector3> originalPositions = new Dictionary<GameObject, Vector3>();
+    private List<ClueData> foundClues = new List<ClueData>();
 
     private List<string> hints = new List<string>
     {
@@ -175,9 +178,42 @@ public class UIManager : MonoBehaviour
                     // Deactivate the clue object
                     clueObject.SetActive(false);
 
+                    // save clue data
+                    ClueData newClue = new ClueData
+                    {
+                        clueName = clueObject.name,
+                        imagePath = "Clues/" + clueObject.name
+                    };
+
+                    foundClues.Add(newClue);
+
+                    Debug.Log($"Added clue: {newClue.clueName}, Path: {newClue.imagePath}");
+
+                    // save as json file
+                    SaveClueData();
+
                     break; 
                 }
             }
+        }
+    }
+
+    void SaveClueData()
+    {
+        ClueDataList clueDataList = new ClueDataList { clues = foundClues };
+        string json = JsonUtility.ToJson(clueDataList);
+        string path = Path.Combine(Application.dataPath, "ClueData.json");
+
+        Debug.Log($"JSON data: {json}");
+
+        try
+        {
+            File.WriteAllText(path, json);
+            Debug.Log($"ClueData.json file saved at: {path}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to save ClueData.json: {e.Message}");
         }
     }
 
@@ -228,7 +264,7 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        int randomIndex = Random.Range(0, hints.Count);
+        int randomIndex = UnityEngine.Random.Range(0, hints.Count);
         string randomHint = hints[randomIndex];
 
         HintText.text = randomHint;
@@ -237,3 +273,4 @@ public class UIManager : MonoBehaviour
         hints.RemoveAt(randomIndex);
     }
 }
+
