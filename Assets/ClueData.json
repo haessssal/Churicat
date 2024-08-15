@@ -1,1 +1,39 @@
-{"clues":[{"clueName":"Clue17","imagePath":"Clues/Clue17"},{"clueName":"Clue16","imagePath":"Clues/Clue16"},{"clueName":"Clue11","imagePath":"Clues/Clue11"},{"clueName":"Clue18","imagePath":"Clues/Clue18"},{"clueName":"Clue13","imagePath":"Clues/Clue13"}]}
+{
+    "clues": [
+        {
+            "clueName": "Clue20",
+            "imagePath": "Clues/Clue20",
+            "clueExplain": "text about clue20"
+        },
+        {
+            "clueName": "Clue22",
+            "imagePath": "Clues/Clue22",
+            "clueExplain": "text about clue22"
+        },
+        {
+            "clueName": "Clue27",
+            "imagePath": "Clues/Clue27",
+            "clueExplain": "text about clue27"
+        },
+        {
+            "clueName": "Clue28",
+            "imagePath": "Clues/Clue28",
+            "clueExplain": "text about clue28"
+        },
+        {
+            "clueName": "Clue21",
+            "imagePath": "Clues/Clue21",
+            "clueExplain": "text about clue21"
+        },
+        {
+            "clueName": "Clue26",
+            "imagePath": "Clues/Clue26",
+            "clueExplain": "text about clue 26"
+        },
+        {
+            "clueName": "Clue29",
+            "imagePath": "Clues/Clue29",
+            "clueExplain": "text about clue29"
+        }
+    ]
+}

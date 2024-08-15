@@ -9,10 +9,10 @@ public class ButtonHandler : MonoBehaviour
     public StarManager starManager;
     public UIManager uiManager;
 
-    private int game1retrycnt = 0;
-    private int game2retrycnt = 0;
-    private int game3retrycnt = 0;
-    private int game4retrycnt = 0;
+    private int game1trycnt = 0;
+    private int game2trycnt = 0;
+    private int game3trycnt = 0;
+    private int game4trycnt = 0;
 
     public void OnStartButtonClick()
     {
@@ -26,18 +26,22 @@ public class ButtonHandler : MonoBehaviour
 
     public void On201ButtonClick(){
         SceneManager.LoadScene("Game1Scene");
+        game1trycnt++;
     }
 
     public void On202ButtonClick(){
         SceneManager.LoadScene("Game2Scene");
+        game2trycnt++;
     }
     
     public void On301ButtonClick(){
         SceneManager.LoadScene("Game3Scene");
+        game3trycnt++;
     }
     
     public void On302ButtonClick(){
         SceneManager.LoadScene("Game4Scene");
+        game4trycnt++;
     }
 
     public void OnCase1ButtonClick(){
@@ -62,6 +66,9 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnGetoutButtonClick()
     {
+        // TODO: clear current game data
+
+        // move scene
         SceneManager.LoadScene("Map1Scene");
     }
 
@@ -79,10 +86,9 @@ public class ButtonHandler : MonoBehaviour
     {
         if (starManager.StarInt >= 2)
         {
+            starManager.LoseStar();
             uiManager.ShowRandomHint();
         }
-
-        starManager.LoseStar();
     }
 
     public void OnAdHintButtonClick()
@@ -116,7 +122,7 @@ public class ButtonHandler : MonoBehaviour
         if (starManager.StarInt >= 2)
         {
             starManager.LoseStar();
-            game1retrycnt++;
+            game1trycnt++;
             popupManager.ClosePopup(starretryButton);
             uiManager.init();
         }
@@ -142,4 +148,5 @@ public class ButtonHandler : MonoBehaviour
     {
         popupManager.OpenPopup("Inventory");
     }
+
 }

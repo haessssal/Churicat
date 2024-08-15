@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e22efdeca6347c54a8f55f91a9c43541
+guid: 582a131ee1a1edd45bc2058cf463ad73
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 600
-  spriteBorder: {x: 149, y: 162, z: 163, w: 160}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Clue11_0
+      name: Clue28_0
       rect:
         serializedVersion: 2
         x: 162
-        y: 179
-        width: 176
-        height: 141
+        y: 178
+        width: 177
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f9021ff7ddfd3740a108317bfd70aab
-      internalID: 1079563751
+      spriteID: 5ad7c7e516632bd4bb3f20ddee06f2a1
+      internalID: -1869390191
       vertices: []
       indices: 
       edges: []
@@ -129,14 +129,14 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Clue11_0: 1079563751
+      Clue28_0: -1869390191
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

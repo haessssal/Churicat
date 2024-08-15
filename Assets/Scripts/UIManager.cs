@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.IO;
 using System;
+using System.Linq;
 
 public class UIManager : MonoBehaviour
 {
@@ -19,24 +20,10 @@ public class UIManager : MonoBehaviour
 
     public List<Image> emptyBoxes;
 
+    private List<string> usedHints = new List<string>();
+
     private Dictionary<GameObject, Vector3> originalPositions = new Dictionary<GameObject, Vector3>();
     private List<ClueData> foundClues = new List<ClueData>();
-
-    private List<string> hints = new List<string>
-    {
-        "Hint 1",
-        "Hint 2",
-        "Hint 3",
-        "Hint 4",
-        "Hint 5",
-        "Hint 6",
-        "Hint 7",
-        "Hint 8",
-        "Hint 9",
-        "Hint 10"
-    };
-
-    private List<string> usedHints = new List<string>();
     
     void Start()
     {
@@ -146,6 +133,7 @@ public class UIManager : MonoBehaviour
 
     void AddImageToEmptyBox(GameObject clueObject)
     {
+
         // Find the first empty box that doesn't have an image set
         foreach (Image box in emptyBoxes)
         {
@@ -178,11 +166,15 @@ public class UIManager : MonoBehaviour
                     // Deactivate the clue object
                     clueObject.SetActive(false);
 
+                    ClueDescription clueDescriptionComponent = clueObject.GetComponent<ClueDescription>();
+                    string clueDescription1 = clueDescriptionComponent != null ? clueDescriptionComponent.clueTexts : "NO EXPLANATION";
+                    
                     // save clue data
                     ClueData newClue = new ClueData
                     {
                         clueName = clueObject.name,
-                        imagePath = "Clues/" + clueObject.name
+                        imagePath = "Clues/" + clueObject.name,
+                        clueExplain = clueDescription1
                     };
 
                     foundClues.Add(newClue);
@@ -192,7 +184,7 @@ public class UIManager : MonoBehaviour
                     // save as json file
                     SaveClueData();
 
-                    break; 
+                    break;
                 }
             }
         }
@@ -201,16 +193,17 @@ public class UIManager : MonoBehaviour
     void SaveClueData()
     {
         ClueDataList clueDataList = new ClueDataList { clues = foundClues };
-        string json = JsonUtility.ToJson(clueDataList);
+        string json = JsonUtility.ToJson(clueDataList, true);  // true: indent format
         string path = Path.Combine(Application.dataPath, "ClueData.json");
 
-        Debug.Log($"JSON data: {json}");
+        // Debug.Log($"JSON data: {json}");
 
         try
         {
             File.WriteAllText(path, json);
-            Debug.Log($"ClueData.json file saved at: {path}");
+            // Debug.Log($"ClueData.json file saved at: {path}");
         }
+
         catch (Exception e)
         {
             Debug.LogError($"Failed to save ClueData.json: {e.Message}");
@@ -221,9 +214,9 @@ public class UIManager : MonoBehaviour
     {
         KeyCluecnt++;
 
-        KeyCluenum.text = $"{KeyCluecnt} / 3";
+        KeyCluenum.text = $"{KeyCluecnt} / 4";
 
-        if (KeyCluecnt >= 3)
+        if (KeyCluecnt >= 4)
         {
             // popup
         }
@@ -258,19 +251,43 @@ public class UIManager : MonoBehaviour
 
     public void ShowRandomHint()
     {
-        if (hints.Count == 0)
+        List<string> allHints = new List<string>();
+        var clues = GameObject.FindGameObjectsWithTag("Clue");
+        var keyclues = GameObject.FindGameObjectsWithTag("KeyClue");
+
+        foreach (var clue in clues)
+        {
+            ClueDescription clueDescriptionComponent = clue.GetComponent<ClueDescription>();
+            allHints.Add(clueDescriptionComponent.clueHints);
+        }
+
+        foreach (var keyclue in keyclues)
+        {
+            ClueDescription clueDescriptionComponent = keyclue.GetComponent<ClueDescription>();
+            allHints.Add(clueDescriptionComponent.clueHints);
+        }
+
+        // except clue hint that has already found or already shown
+        List<string> availableHints = new List<string>(allHints);
+        foreach (var foundClue in foundClues)
+        {
+            availableHints.Remove(foundClue.clueExplain);
+        }
+
+        availableHints = availableHints.Except(usedHints).ToList();
+
+        if (availableHints.Count == 0)
         {
             HintText.text = "No more hints available";
             return;
         }
 
-        int randomIndex = UnityEngine.Random.Range(0, hints.Count);
-        string randomHint = hints[randomIndex];
+        int randomIndex = UnityEngine.Random.Range(0, availableHints.Count);
+        string randomHint = availableHints[randomIndex];
 
         HintText.text = randomHint;
 
         usedHints.Add(randomHint);
-        hints.RemoveAt(randomIndex);
     }
 }
 

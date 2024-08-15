@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 134f5b31d6b22d148950c1420c8567e6
+guid: 6701acaedb291364595aa10bc6654cca
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Clue12_0
+      name: Clue29_0
       rect:
         serializedVersion: 2
-        x: 157
-        y: 177
-        width: 186
-        height: 145
+        x: 53
+        y: 110
+        width: 395
+        height: 280
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 162f05ecc73691a41ae22eaacc1f35a4
-      internalID: -1248372736
+      spriteID: bb88f340740c17b49abaedd03e50b0ff
+      internalID: 1796087646
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Clue12_0: -1248372736
+      Clue29_0: 1796087646
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

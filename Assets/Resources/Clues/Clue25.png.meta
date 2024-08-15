@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Clue15_0
+      name: Clue25_0
       rect:
         serializedVersion: 2
         x: 147
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 710d4a4bbe9d1b842b5d5db6aa51e6ff
-      internalID: -1422765344
+      spriteID: 5674c45b4d2379d42aff43ab95463d83
+      internalID: -2072684434
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Clue15_0: -1422765344
+      Clue25_0: -2072684434
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

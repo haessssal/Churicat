@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System;
+using TMPro;
+using System.Linq;
 
 [Serializable]
 public class ClueData
 {
     public string clueName;
     public string imagePath;
+    public string clueExplain;
 }
 
 [Serializable]
@@ -22,12 +25,16 @@ public class InventoryManager : MonoBehaviour
 {
     public List<Image> slotImages;  
     public List<ClueData> loadedClues = new List<ClueData>();  // data from json
+    public TMP_Text ClueExplanation;
+    // public List<Button> slotButtons;
+    public Image bigImage;
 
     void Start()
     {
         Debug.Log("InventoryManager Start");
         LoadData();
         DisplayCluesInInventory();
+        Setups();
     }
 
     public void LoadData()
@@ -78,11 +85,94 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    /*
-    Sprite LoadSpriteFromPath(string path)
+    public void ClearInventory()
     {
-        // load image (from resources)
-        return Resources.Load<Sprite>(path); 
+        loadedClues.Clear();
+        SaveInvenData();
+
+        foreach (var slotImage in slotImages)
+        {
+            slotImage.sprite = null;
+            slotImage.color = Color.clear;
+        }
+
+        Debug.Log("All clues removed from inventory.");
     }
-    */
+
+    void Setups()
+    {
+        for (int i = 0; i < slotImages.Count; i++)
+        {
+            int index = i;
+            Button button = slotImages[i].GetComponent<Button>();
+            if (button != null)
+            {
+                button.onClick.AddListener(() => OnClueClicked(index));
+            }
+
+            slotImages[i].preserveAspect = true;
+        }
+
+        bigImage.preserveAspect = true;
+    }
+
+    public void OnClueClicked(int index)
+    {
+        if (index >= 0 && index < loadedClues.Count)
+        {
+            ClueData clue = loadedClues[index];
+            ClueExplanation.text = clue.clueExplain;  // Display clue description
+
+            // Display clue image in the bigimage
+            Sprite clueSprite = Resources.Load<Sprite>(clue.imagePath);
+            if (clueSprite != null)
+            {
+                bigImage.sprite = clueSprite;
+                bigImage.color = Color.white;  // Ensure image is visible
+
+                bigImage.preserveAspect = true;
+            }
+
+            /*
+            else
+            {
+                Debug.LogWarning($"Could not load sprite");
+            }
+            */
+        }
+    }
+
+    public void AddClue(ClueData newClue)
+    {
+        // check if the clue already exists
+        if (!loadedClues.Any(c => c.clueName == newClue.clueName))
+        {
+            loadedClues.Add(newClue);
+            SaveInvenData();
+        }
+
+        else{
+            Debug.Log($"Clue {newClue.clueName} already exists.");
+        }
+    }
+
+    public void SaveInvenData()
+    {
+        ClueDataList clueDataList = new ClueDataList { clues = loadedClues };
+        string json = JsonUtility.ToJson(clueDataList, true);  // true: indent format
+        string path = Path.Combine(Application.dataPath, "ClueData.json");
+
+        Debug.Log($"JSON data: {json}");
+
+        try
+        {
+            File.WriteAllText(path, json);
+            Debug.Log($"ClueData.json file saved at: {path}");
+        }
+
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to save ClueData.json: {e.Message}");
+        }
+    }
 }
