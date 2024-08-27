@@ -7634,6 +7634,13 @@ MonoBehaviour:
   popupManager: {fileID: 1641200265}
   starManager: {fileID: 978548188}
   uiManager: {fileID: 1786912699}
+  gameManager: {fileID: 869749906}
+  IsLockedText: {fileID: 0}
+  CantRetryText: {fileID: 0}
+  game1trycnt: 0
+  game2trycnt: 0
+  game3trycnt: 0
+  game4trycnt: 0
 --- !u!4 &1424198404
 Transform:
   m_ObjectHideFlags: 0

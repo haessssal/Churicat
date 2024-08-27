@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
 {
     public StarManager starManager;
     public static InventoryManager inventoryManager;
+    public static ButtonHandler buttonHandler;
 
     private void Start()
     {
         Load();
+        buttonHandler = FindObjectOfType<ButtonHandler>();
     }
 
     private void OnApplicationQuit()
@@ -22,6 +24,9 @@ public class GameManager : MonoBehaviour
     public void Save()
     {
         PlayerPrefs.SetInt("Star", starManager.StarInt);
+
+        buttonHandler = FindObjectOfType<ButtonHandler>();
+        PlayerPrefs.SetInt("Game2TryCnt", buttonHandler.game2trycnt);
         PlayerPrefs.Save();
     }
 
@@ -30,6 +35,12 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("Star"))
         {
             starManager.StarInt = PlayerPrefs.GetInt("Star");
+        }
+
+        buttonHandler = FindObjectOfType<ButtonHandler>();
+        if (PlayerPrefs.HasKey("Game2TryCnt"))
+        {
+            buttonHandler.game2trycnt = PlayerPrefs.GetInt("Game2TryCnt");
         }
 
         starManager.UpdateStarText();
@@ -60,7 +71,13 @@ public class GameManager : MonoBehaviour
                 inventoryManager.ClearInventory();
                 Debug.Log("Inventory cleared.");
             }
+
+            // Clear the trycnt
+            buttonHandler.game1trycnt = 0;
+            buttonHandler.game2trycnt = 0;
+            buttonHandler.game3trycnt = 0;
+            buttonHandler.game4trycnt = 0;
+
         }
     }
-
 }

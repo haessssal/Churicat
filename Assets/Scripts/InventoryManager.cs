@@ -26,7 +26,6 @@ public class InventoryManager : MonoBehaviour
     public List<Image> slotImages;  
     public List<ClueData> loadedClues = new List<ClueData>();  // data from json
     public TMP_Text ClueExplanation;
-    // public List<Button> slotButtons;
     public Image bigImage;
 
     void Start()
@@ -37,6 +36,7 @@ public class InventoryManager : MonoBehaviour
         Setups();
     }
 
+    // get clue data from json
     public void LoadData()
     {
         // string path = Path.Combine(Application.persistentDataPath, "ClueData.json");
@@ -88,7 +88,6 @@ public class InventoryManager : MonoBehaviour
     public void ClearInventory()
     {
         loadedClues.Clear();
-        SaveInvenData();
 
         foreach (var slotImage in slotImages)
         {
@@ -132,13 +131,6 @@ public class InventoryManager : MonoBehaviour
 
                 bigImage.preserveAspect = true;
             }
-
-            /*
-            else
-            {
-                Debug.LogWarning($"Could not load sprite");
-            }
-            */
         }
     }
 
@@ -149,6 +141,7 @@ public class InventoryManager : MonoBehaviour
         {
             loadedClues.Add(newClue);
             SaveInvenData();
+            DisplayCluesInInventory();  // Update inventory UI
         }
 
         else{
@@ -167,7 +160,7 @@ public class InventoryManager : MonoBehaviour
         try
         {
             File.WriteAllText(path, json);
-            Debug.Log($"ClueData.json file saved at: {path}");
+            // Debug.Log($"ClueData.json file saved at: {path}");
         }
 
         catch (Exception e)

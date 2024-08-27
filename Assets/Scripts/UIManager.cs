@@ -190,6 +190,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    // save clue data in json to load in inventory
     void SaveClueData()
     {
         ClueDataList clueDataList = new ClueDataList { clues = foundClues };
@@ -290,4 +291,3 @@ public class UIManager : MonoBehaviour
         usedHints.Add(randomHint);
     }
 }
-
