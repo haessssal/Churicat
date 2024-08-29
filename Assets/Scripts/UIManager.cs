@@ -44,6 +44,8 @@ public class UIManager : MonoBehaviour
         {
             originalPositions[keyClue] = keyClue.transform.position;
         }
+
+        // LoadClueData();
     }
 
     void Update()
@@ -88,10 +90,10 @@ public class UIManager : MonoBehaviour
 
     void ResetGameObjects()
     {
-        foreach (var kvp in originalPositions)
+        foreach (var k in originalPositions)
         {
-            kvp.Key.transform.position = kvp.Value;
-            kvp.Key.SetActive(true); 
+            k.Key.transform.position = k.Value;
+            k.Key.SetActive(true); 
         }
     }
 
@@ -190,6 +192,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /*
     // save clue data in json to load in inventory
     void SaveClueData()
     {
@@ -210,6 +213,50 @@ public class UIManager : MonoBehaviour
             Debug.LogError($"Failed to save ClueData.json: {e.Message}");
         }
     }
+    */
+
+    void SaveClueData()
+    {
+        string path = Path.Combine(Application.dataPath, "ClueData.json");
+        ClueDataList existingClueDataList = new ClueDataList();
+
+        // 기존에 저장된 데이터가 있으면 불러오기
+        if (File.Exists(path))
+        {
+            try
+            {
+                string existingJson = File.ReadAllText(path);
+                existingClueDataList = JsonUtility.FromJson<ClueDataList>(existingJson);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Failed to load existing ClueData.json: {e.Message}");
+            }
+        }
+
+        // 새로운 단서를 기존 데이터에 추가
+        existingClueDataList.clues.AddRange(foundClues);
+
+        // 중복된 데이터를 제거 (optional)
+        existingClueDataList.clues = existingClueDataList.clues
+            .GroupBy(c => c.clueName)
+            .Select(g => g.First())
+            .ToList();
+
+        string json = JsonUtility.ToJson(existingClueDataList, true);
+
+        try
+        {   
+            File.WriteAllText(path, json);
+            Debug.Log($"ClueData.json file saved at: {path}");
+        }
+    
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to save ClueData.json: {e.Message}");
+        }
+    }
+
 
     void UpdateKeyClueCount()
     {

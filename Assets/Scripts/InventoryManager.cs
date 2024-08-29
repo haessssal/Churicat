@@ -104,6 +104,7 @@ public class InventoryManager : MonoBehaviour
         {
             int index = i;
             Button button = slotImages[i].GetComponent<Button>();
+            
             if (button != null)
             {
                 button.onClick.AddListener(() => OnClueClicked(index));
