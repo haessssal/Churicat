@@ -1,1 +1,14 @@
-{}
+{
+    "clues": [
+        {
+            "clueName": "Clue26",
+            "imagePath": "Clues/Clue26",
+            "clueExplain": "text about clue 26"
+        },
+        {
+            "clueName": "Clue21",
+            "imagePath": "Clues/Clue21",
+            "clueExplain": "text about clue21"
+        }
+    ]
+}

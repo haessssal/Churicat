@@ -192,29 +192,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    /*
-    // save clue data in json to load in inventory
-    void SaveClueData()
-    {
-        ClueDataList clueDataList = new ClueDataList { clues = foundClues };
-        string json = JsonUtility.ToJson(clueDataList, true);  // true: indent format
-        string path = Path.Combine(Application.dataPath, "ClueData.json");
-
-        // Debug.Log($"JSON data: {json}");
-
-        try
-        {
-            File.WriteAllText(path, json);
-            // Debug.Log($"ClueData.json file saved at: {path}");
-        }
-
-        catch (Exception e)
-        {
-            Debug.LogError($"Failed to save ClueData.json: {e.Message}");
-        }
-    }
-    */
-
     void SaveClueData()
     {
         string path = Path.Combine(Application.dataPath, "ClueData.json");
@@ -237,7 +214,7 @@ public class UIManager : MonoBehaviour
         // 새로운 단서를 기존 데이터에 추가
         existingClueDataList.clues.AddRange(foundClues);
 
-        // 중복된 데이터를 제거 (optional)
+        // 중복된 데이터 제거
         existingClueDataList.clues = existingClueDataList.clues
             .GroupBy(c => c.clueName)
             .Select(g => g.First())
@@ -257,6 +234,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public List<ClueData> GetFoundClues()
+    {
+        return foundClues;  // 현재 게임에서 찾은 클루 데이터 목록을 반환
+    }
 
     void UpdateKeyClueCount()
     {

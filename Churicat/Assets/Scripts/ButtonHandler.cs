@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using System.IO;
+using System;
+using System.Linq;
 
 public class ButtonHandler : MonoBehaviour
 {
@@ -14,6 +17,10 @@ public class ButtonHandler : MonoBehaviour
 
     public TMP_Text IsLockedText;
     public TMP_Text CantRetryText;
+    public TMP_Text WhoText;
+
+    public GameObject NextButton;
+    private string animal;
 
     public int game1trycnt = 0;
     public int game2trycnt = 0;
@@ -127,7 +134,32 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnGetoutButtonClick()
     {
-        // TODO: clear current game data
+        // 해당 게임에서 얻은 clue data 지우기
+        string path = Path.Combine(Application.dataPath, "ClueData.json");
+
+        if (File.Exists(path))
+        {
+            try
+            {
+                string existingJson = File.ReadAllText(path);
+                ClueDataList existingClueDataList = JsonUtility.FromJson<ClueDataList>(existingJson);
+
+                List<ClueData> cluesToRemove = uiManager.GetFoundClues();
+
+                existingClueDataList.clues = existingClueDataList.clues
+                    .Where(clue => !cluesToRemove.Any(c => c.clueName == clue.clueName))
+                    .ToList();
+
+                // JSON 파일에 업데이트된 데이터를 다시 저장
+                string updatedJson = JsonUtility.ToJson(existingClueDataList, true);
+                File.WriteAllText(path, updatedJson);
+            }
+
+            catch (Exception e)
+            {
+                Debug.LogError($"Failed to update ClueData.json: {e.Message}");
+            }
+        }
 
         // move scene
         SceneManager.LoadScene("Map1Scene");
@@ -269,4 +301,47 @@ public class ButtonHandler : MonoBehaviour
         popupManager.OpenPopup("Inventory");
     }
 
+    public void OnDochiClick()
+    {
+        WhoText.text = "DOCHI";
+        WhoText.gameObject.SetActive(true);
+        animal = "Dochi";
+        NextButton.SetActive(true);
+    }
+
+    public void OnDogClick()
+    {
+        WhoText.text = "DOG";
+        WhoText.gameObject.SetActive(true);
+        animal = "Dog";
+        NextButton.SetActive(true);
+    }
+
+    public void OnHamClick()
+    {
+        WhoText.text = "HAM";
+        WhoText.gameObject.SetActive(true);
+        animal = "Ham";
+        NextButton.SetActive(true);
+    }
+
+    public void OnNextButtonClick()
+    {
+        switch (animal)
+        {
+            case "Dochi":
+                popupManager.OpenPopup("Dochi");
+                break;
+            case "Dog":
+                popupManager.OpenPopup("Dog");
+                break;
+            case "Ham":
+                popupManager.OpenPopup("Ham");
+                break;
+            default:
+                Debug.LogWarning("Unknown animal: " + animal);
+                break;
+        }
+        
+    }
 }

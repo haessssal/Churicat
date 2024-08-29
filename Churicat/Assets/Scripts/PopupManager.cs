@@ -18,6 +18,8 @@ public class PopupManager : MonoBehaviour
     public GameObject CantbutPopup;
     public GameObject InventoryPopup;
 
+    public GameObject DochiPopup;
+
     public void Start()
     {
         Background.gameObject.SetActive(false);
@@ -30,6 +32,7 @@ public class PopupManager : MonoBehaviour
         RetryPopup.SetActive(false);
         CantbutPopup.SetActive(false);
         InventoryPopup.SetActive(false);
+        DochiPopup.SetActive(false);
     }
 
     public void OpenPopup(string popupName)
@@ -67,6 +70,9 @@ public class PopupManager : MonoBehaviour
                 break;
             case "Inventory":
                 InventoryPopup.SetActive(true);
+                break;
+            case "Dochi":
+                DochiPopup.SetActive(true);
                 break;
         }
     }
