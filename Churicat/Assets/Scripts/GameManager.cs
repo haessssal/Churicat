@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
+// Final1Scene에서 ending1 정답(클릭한 동물 + 문장 2개) 일치할 경우 OpenPopup
+// 기타엔딩 해금: ending2-3 정답으로 변경하고 나머지 초기화
+// 하나라도 틀릴 경우 finaltrycnt +1 하고 팝업 ...
+// dialog 만들어
 public class GameManager : MonoBehaviour
 {
     public StarManager starManager;
@@ -26,7 +30,11 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Star", starManager.StarInt);
 
         buttonHandler = FindObjectOfType<ButtonHandler>();
+        PlayerPrefs.SetInt("Game1TryCnt", buttonHandler.game1trycnt);
         PlayerPrefs.SetInt("Game2TryCnt", buttonHandler.game2trycnt);
+        PlayerPrefs.SetInt("Game3TryCnt", buttonHandler.game3trycnt);
+        PlayerPrefs.SetInt("Game4TryCnt", buttonHandler.game4trycnt);
+        PlayerPrefs.SetInt("Final1TryCnt", buttonHandler.final1trycnt);
         PlayerPrefs.Save();
     }
 
@@ -38,10 +46,27 @@ public class GameManager : MonoBehaviour
         }
 
         buttonHandler = FindObjectOfType<ButtonHandler>();
+        if (PlayerPrefs.HasKey("Game1TryCnt"))
+        {
+            buttonHandler.game1trycnt = PlayerPrefs.GetInt("Game1TryCnt");
+        }
         if (PlayerPrefs.HasKey("Game2TryCnt"))
         {
             buttonHandler.game2trycnt = PlayerPrefs.GetInt("Game2TryCnt");
         }
+        if (PlayerPrefs.HasKey("Game3TryCnt"))
+        {
+            buttonHandler.game3trycnt = PlayerPrefs.GetInt("Game3TryCnt");
+        }
+        if (PlayerPrefs.HasKey("Game4TryCnt"))
+        {
+            buttonHandler.game4trycnt = PlayerPrefs.GetInt("Game4TryCnt");
+        }
+        if (PlayerPrefs.HasKey("Final1TryCnt"))
+        {
+            buttonHandler.final1trycnt = PlayerPrefs.GetInt("Final1TryCnt");
+        }
+
 
         starManager.UpdateStarText();
     }
@@ -77,6 +102,7 @@ public class GameManager : MonoBehaviour
             buttonHandler.game2trycnt = 0;
             buttonHandler.game3trycnt = 0;
             buttonHandler.game4trycnt = 0;
+            buttonHandler.final1trycnt = 0;
 
         }
     }

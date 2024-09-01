@@ -15,10 +15,12 @@ public class PopupManager : MonoBehaviour
     public GameObject Over2Popup;
     public GameObject Over3Popup;
     public GameObject RetryPopup;
-    public GameObject CantbutPopup;
+    public GameObject CantbuyPopup;
     public GameObject InventoryPopup;
 
     public GameObject DochiPopup;
+    // public GameObject DogPopup;
+    // public GameObject HamPopup;
 
     public void Start()
     {
@@ -30,7 +32,7 @@ public class PopupManager : MonoBehaviour
         HomePopup.SetActive(false);
         Over1Popup.SetActive(false);
         RetryPopup.SetActive(false);
-        CantbutPopup.SetActive(false);
+        CantbuyPopup.SetActive(false);
         InventoryPopup.SetActive(false);
         DochiPopup.SetActive(false);
     }
@@ -66,7 +68,7 @@ public class PopupManager : MonoBehaviour
                 RetryPopup.SetActive(true);
                 break;
             case "Cantbuy":
-                CantbutPopup.SetActive(true);
+                CantbuyPopup.SetActive(true);
                 break;
             case "Inventory":
                 InventoryPopup.SetActive(true);

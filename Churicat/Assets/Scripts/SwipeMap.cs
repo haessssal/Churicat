@@ -16,11 +16,13 @@ public class SwipeMap : MonoBehaviour
     public string[] Animaltexts;
     public TMP_Text Homenum;
     public string[] Homenums;
+    public TMP_Text TrycntText;
+    public ButtonHandler buttonHandler;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -68,7 +70,39 @@ public class SwipeMap : MonoBehaviour
                 AnimalImage.sprite = Animalimages[i];
                 AnimalText.text = Animaltexts[i];
                 Homenum.text = Homenums[i];
+
+                // Update TrycntText with the current game's try count
+                UpdateTrycntText(i);
             }
         }
+    }
+
+    private void UpdateTrycntText(int index)
+    {
+        int trycnt = 0;
+
+        switch (index)
+        {
+            case 0:
+                trycnt = GameManager.buttonHandler.game1trycnt;
+                break;
+            case 1:
+                trycnt = GameManager.buttonHandler.game2trycnt;
+                break;
+            case 2:
+                trycnt = GameManager.buttonHandler.game3trycnt;
+                break;
+            case 3:
+                trycnt = GameManager.buttonHandler.game4trycnt;
+                break;
+            case 4:
+                trycnt = GameManager.buttonHandler.final1trycnt;
+                break;
+            default:
+                Debug.LogWarning("Invalid index for try count.");
+                break;
+        }
+
+        TrycntText.text = "Try : " + trycnt + " / 4";
     }
 }

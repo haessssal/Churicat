@@ -10,6 +10,12 @@ using System.Linq;
 
 public class ButtonHandler : MonoBehaviour
 {
+    public int game1trycnt = 0;
+    public int game2trycnt = 0;
+    public int game3trycnt = 0;
+    public int game4trycnt = 0;
+    public int final1trycnt = 0;
+
     public PopupManager popupManager;
     public StarManager starManager;
     public UIManager uiManager;
@@ -21,11 +27,6 @@ public class ButtonHandler : MonoBehaviour
 
     public GameObject NextButton;
     private string animal;
-
-    public int game1trycnt = 0;
-    public int game2trycnt = 0;
-    public int game3trycnt = 0;
-    public int game4trycnt = 0;
 
     public void OnStartButtonClick()
     {
@@ -94,7 +95,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnFinal1ButtonClick()
     {
-        if (game1trycnt >= 1 && game2trycnt >= 1 && game3trycnt >= 1 && game4trycnt >= 1)
+        if (game1trycnt >= 1 && game2trycnt >= 1 && game3trycnt >= 1 && game4trycnt >= 1 && final1trycnt < 4)
         {
             SceneManager.LoadScene("Final1Scene");
         }
@@ -181,6 +182,11 @@ public class ButtonHandler : MonoBehaviour
         {
             starManager.LoseStar();
             uiManager.ShowRandomHint();
+        }
+
+        else
+        {
+            popupManager.OpenPopup("Cantbuy");
         }
     }
 
