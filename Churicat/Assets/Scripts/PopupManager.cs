@@ -22,9 +22,12 @@ public class PopupManager : MonoBehaviour
     // public GameObject DogPopup;
     // public GameObject HamPopup;
 
+    private UIManager uiManager;
+
     public void Start()
     {
         Background.gameObject.SetActive(false);
+        uiManager = FindObjectOfType<UIManager>();
 
         OptionPopup.SetActive(false);
         HintPopup.SetActive(false);
@@ -40,6 +43,7 @@ public class PopupManager : MonoBehaviour
     public void OpenPopup(string popupName)
     {
         Background.gameObject.SetActive(true);
+        uiManager.SetPopupState(true);
 
         switch (popupName)
         {
@@ -83,5 +87,6 @@ public class PopupManager : MonoBehaviour
     {
         closeButton.transform.parent.gameObject.SetActive(false);
         Background.gameObject.SetActive(false);
+        uiManager.SetPopupState(false);
     }
 }

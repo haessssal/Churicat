@@ -24,6 +24,9 @@ public class UIManager : MonoBehaviour
 
     private Dictionary<GameObject, Vector3> originalPositions = new Dictionary<GameObject, Vector3>();
     private List<ClueData> foundClues = new List<ClueData>();
+
+    private bool isPopupActive = false;  
+    private bool isDialogActive = false;
     
     void Start()
     {
@@ -48,8 +51,23 @@ public class UIManager : MonoBehaviour
         // LoadClueData();
     }
 
+    public void SetPopupState(bool state)
+    {
+        isPopupActive = state;
+    }
+
+    public void SetDialogState(bool state)
+    {
+        isDialogActive = state;
+    }
+
     void Update()
     {
+        if (isDialogActive || isPopupActive) 
+        {
+            return;
+        }
+
         // pc mouse click
         if (Input.GetMouseButtonDown(0))
         {
@@ -239,6 +257,7 @@ public class UIManager : MonoBehaviour
         return foundClues;  // 현재 게임에서 찾은 클루 데이터 목록을 반환
     }
 
+    // 게임 124 TODO
     void UpdateKeyClueCount()
     {
         KeyCluecnt++;
@@ -278,7 +297,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ShowRandomHint()
+    public bool ShowRandomHint()
     {
         List<string> allHints = new List<string>();
         var clues = GameObject.FindGameObjectsWithTag("Clue");
@@ -308,7 +327,7 @@ public class UIManager : MonoBehaviour
         if (availableHints.Count == 0)
         {
             HintText.text = "No more hints available";
-            return;
+            return false;
         }
 
         int randomIndex = UnityEngine.Random.Range(0, availableHints.Count);
@@ -317,5 +336,7 @@ public class UIManager : MonoBehaviour
         HintText.text = randomHint;
 
         usedHints.Add(randomHint);
+
+        return true;
     }
 }

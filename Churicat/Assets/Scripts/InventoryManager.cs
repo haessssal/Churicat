@@ -28,6 +28,7 @@ public class InventoryManager : MonoBehaviour
     public TMP_Text ClueExplanation;
     public Image bigImage;
 
+
     void Start()
     {
         Debug.Log("InventoryManager Start");
@@ -63,6 +64,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    /*
     void DisplayCluesInInventory()
     {
         // show clue data in each slot
@@ -84,6 +86,89 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+    */
+
+    void DisplayCluesInInventory()
+    {
+        // 범위에 따라 슬롯 인덱스 초기화
+        int nextSlot10_19 = 0;   // clue10 ~ clue19
+        int nextSlot20_29 = 10;  // clue20 ~ clue29
+        int nextSlot30_39 = 20;  // clue30 ~ clue39
+        int nextSlot40_49 = 30;  // clue40 ~ clue49
+
+        // 각 슬롯에 해당하는 단서의 인덱스 저장
+        List<int> slotToClueIndex = new List<int>(new int[slotImages.Count]);
+
+        for (int i = 0; i < slotToClueIndex.Count; i++)
+        {
+            slotToClueIndex[i] = -1; // 초깃값: 단서 없음
+        }
+
+        for (int i = 0; i < loadedClues.Count; i++)
+        {
+            var clue = loadedClues[i];
+            int clueNumber;
+
+            if (int.TryParse(clue.clueName.Replace("Clue", ""), out clueNumber))
+            {
+                int slotIndex = -1;
+
+                if (clueNumber >= 10 && clueNumber < 20 && nextSlot10_19 < 10)
+                {
+                    slotIndex = nextSlot10_19;  // clue10 ~ clue19
+                    nextSlot10_19++;
+                }
+                else if (clueNumber >= 20 && clueNumber < 30 && nextSlot20_29 < 20)
+                {
+                    slotIndex = nextSlot20_29;  // clue20 ~ clue29
+                    nextSlot20_29++;
+                }
+                else if (clueNumber >= 30 && clueNumber < 40 && nextSlot30_39 < 30)
+                {
+                    slotIndex = nextSlot30_39;  // clue30 ~ clue39
+                    nextSlot30_39++;
+                }
+                else if (clueNumber >= 40 && clueNumber < 50 && nextSlot40_49 < 40)
+                {
+                    slotIndex = nextSlot40_49;  // clue40 ~ clue49
+                    nextSlot40_49++;
+                }
+
+                // 가능한 slotIndex 일 때만 삽입
+                if (slotIndex >= 0 && slotIndex < slotImages.Count)
+                {
+                    Sprite clueSprite = Resources.Load<Sprite>(clue.imagePath);
+                    if (clueSprite != null)
+                    {
+                        slotImages[slotIndex].sprite = clueSprite;
+                        slotImages[slotIndex].color = Color.white;
+                        slotToClueIndex[slotIndex] = i;  // 해당 슬롯에 어떤 단서가 들어갔는지 인덱스 저장
+                        Debug.Log($"Displayed clue in slot {slotIndex}: {clue.clueName}");
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Could not load sprite from path: {clue.imagePath}");
+                    }
+                }
+            }
+        }   
+
+        // 각 슬롯에 대한 클릭 이벤트 
+        for (int i = 0; i < slotImages.Count; i++)
+        {
+            int index = i; // 로컬로 저장
+            Button button = slotImages[i].GetComponent<Button>();
+
+            if (button != null)
+            {
+                button.onClick.RemoveAllListeners(); // 기존 리스너 제거
+                button.onClick.AddListener(() => OnClueClicked(slotToClueIndex[index]));
+            }
+
+            slotImages[i].preserveAspect = true;
+        }
+    }
+
 
     public void ClearInventory()
     {

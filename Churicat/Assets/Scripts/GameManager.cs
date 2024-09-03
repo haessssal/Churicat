@@ -7,10 +7,11 @@ using System.IO;
 // Final1Scene에서 ending1 정답(클릭한 동물 + 문장 2개) 일치할 경우 OpenPopup
 // 기타엔딩 해금: ending2-3 정답으로 변경하고 나머지 초기화
 // 하나라도 틀릴 경우 finaltrycnt +1 하고 팝업 ...
-// dialog 만들어
+
 public class GameManager : MonoBehaviour
 {
     public StarManager starManager;
+    public DialogSystem dialogSystem;
     public static InventoryManager inventoryManager;
     public static ButtonHandler buttonHandler;
 

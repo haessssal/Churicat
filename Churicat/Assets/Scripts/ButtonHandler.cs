@@ -20,6 +20,7 @@ public class ButtonHandler : MonoBehaviour
     public StarManager starManager;
     public UIManager uiManager;
     public GameManager gameManager;
+    public DialogSystem dialogSystem;
 
     public TMP_Text IsLockedText;
     public TMP_Text CantRetryText;
@@ -133,6 +134,11 @@ public class ButtonHandler : MonoBehaviour
         SceneManager.LoadScene("CaseScene");
     }
 
+    public void OnBackButtonClick()
+    {
+        SceneManager.LoadScene("Map1Scene");
+    }
+
     public void OnGetoutButtonClick()
     {
         // 해당 게임에서 얻은 clue data 지우기
@@ -180,8 +186,15 @@ public class ButtonHandler : MonoBehaviour
     {
         if (starManager.StarInt >= 2)
         {
-            starManager.LoseStar();
-            uiManager.ShowRandomHint();
+            if (uiManager.ShowRandomHint())
+            {
+                starManager.LoseStar();
+            }
+            
+            else
+            {
+                popupManager.OpenPopup("Cantbuy");
+            }
         }
 
         else
@@ -348,6 +361,10 @@ public class ButtonHandler : MonoBehaviour
                 Debug.LogWarning("Unknown animal: " + animal);
                 break;
         }
-        
+    }
+
+    public void OnReadButtonClick()
+    {
+        dialogSystem.UpdateDialog();
     }
 }
