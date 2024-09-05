@@ -9,6 +9,7 @@ public class SwipeText : MonoBehaviour
     public GameObject scrollbar;
     public Button upButton;
     public Button downButton;
+    public string nowText;
 
     float scroll_pos = 1;
     float[] pos;
@@ -24,7 +25,6 @@ public class SwipeText : MonoBehaviour
         downButton.onClick.AddListener(MoveDown);
     }
 
-    // Update is called once per frame
     void Update()
     {
         pos = new float[transform.childCount];
@@ -40,6 +40,11 @@ public class SwipeText : MonoBehaviour
             if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
             {
                 scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[i], 0.1f);
+
+                // 현재 보여지는 텍스트 nowText
+                int reverseIndex = transform.childCount - 1 - i;
+                nowText = transform.GetChild(reverseIndex).GetComponent<TMP_Text>().gameObject.name;
+                // Debug.Log(nowText);
             }
         }
     }
@@ -67,5 +72,4 @@ public class SwipeText : MonoBehaviour
             }
         }
     }
-   
 }

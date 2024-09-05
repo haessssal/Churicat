@@ -1,1 +1,29 @@
-{}
+{
+    "clues": [
+        {
+            "clueName": "Clue29",
+            "imagePath": "Clues/Clue29",
+            "clueExplain": "text about clue29"
+        },
+        {
+            "clueName": "Clue26",
+            "imagePath": "Clues/Clue26",
+            "clueExplain": "text about clue 26"
+        },
+        {
+            "clueName": "Clue21",
+            "imagePath": "Clues/Clue21",
+            "clueExplain": "text about clue21"
+        },
+        {
+            "clueName": "Clue27",
+            "imagePath": "Clues/Clue27",
+            "clueExplain": "text about clue27"
+        },
+        {
+            "clueName": "Clue22",
+            "imagePath": "Clues/Clue22",
+            "clueExplain": "text about clue22"
+        }
+    ]
+}

@@ -53,7 +53,7 @@ public class PopupManager : MonoBehaviour
             case "Hint":
                 HintPopup.SetActive(true);
                 break;
-            case "Pause":
+            case "Pause":   
                 PausePopup.SetActive(true);
                 break;
             case "Home":

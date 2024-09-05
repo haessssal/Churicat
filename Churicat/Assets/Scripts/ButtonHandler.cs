@@ -21,6 +21,13 @@ public class ButtonHandler : MonoBehaviour
     public UIManager uiManager;
     public GameManager gameManager;
     public DialogSystem dialogSystem;
+    public SwipeText swipeText;
+
+    public bool isRight;
+
+    public SwipeText scrollView1SwipeText;
+    public SwipeText scrollView2SwipeText;
+
 
     public TMP_Text IsLockedText;
     public TMP_Text CantRetryText;
@@ -366,5 +373,20 @@ public class ButtonHandler : MonoBehaviour
     public void OnReadButtonClick()
     {
         dialogSystem.UpdateDialog();
+    }
+
+    public void OnDecisionButtonClick()
+    {
+        if (animal == "Dochi" && scrollView1SwipeText.nowText == "Word1" && scrollView2SwipeText.nowText == "Word4")
+        {
+            isRight = true;
+        }
+
+        else
+        {
+            isRight = false;
+        }
+
+        Debug.Log("isRight: " + isRight);
     }
 }

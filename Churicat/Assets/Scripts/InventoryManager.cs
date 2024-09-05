@@ -52,10 +52,12 @@ public class InventoryManager : MonoBehaviour
             ClueDataList clueDataList = JsonUtility.FromJson<ClueDataList>(json);
             loadedClues = clueDataList.clues;
             
+            /*
             foreach (var clue in loadedClues)
             {
                 Debug.Log($"Loaded Clue: {clue.clueName}, Path: {clue.imagePath}");
             }
+            */
         }
 
         else
@@ -143,7 +145,7 @@ public class InventoryManager : MonoBehaviour
                         slotImages[slotIndex].sprite = clueSprite;
                         slotImages[slotIndex].color = Color.white;
                         slotToClueIndex[slotIndex] = i;  // 해당 슬롯에 어떤 단서가 들어갔는지 인덱스 저장
-                        Debug.Log($"Displayed clue in slot {slotIndex}: {clue.clueName}");
+                        // Debug.Log($"Displayed clue in slot {slotIndex}: {clue.clueName}");
                     }
                     else
                     {
