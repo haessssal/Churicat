@@ -6,4 +6,5 @@ public class ClueDescription : MonoBehaviour
 {
     public string clueTexts;
     public string clueHints;
+    public string clueNames;
 }

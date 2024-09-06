@@ -36,7 +36,7 @@ public class FinalClues : MonoBehaviour
             /*
             foreach (var clue in inventoryManager.loadedClues)
             {
-                Debug.Log($"Loaded Clue: {clue.clueName}, Path: {clue.imagePath}");
+                Debug.Log($"Loaded Clue: {clue.clueIS}, Path: {clue.imagePath}");
             }
             */
         }
@@ -61,7 +61,7 @@ public class FinalClues : MonoBehaviour
 
         foreach (var clue in inventoryManager.loadedClues)
         {
-            if (targetClues.Contains(clue.clueName) && index < finalImages.Count)
+            if (targetClues.Contains(clue.clueID) && index < finalImages.Count)
             {
                 // 이미지 로드 from Resources
                 Sprite clueSprite = Resources.Load<Sprite>(clue.imagePath);
@@ -70,7 +70,7 @@ public class FinalClues : MonoBehaviour
                 {
                     finalImages[index].sprite = clueSprite;
                     finalImages[index].color = Color.white; // 불투명하게 설정
-                    // Debug.Log($"Displayed clue in final slot: {clue.clueName}");
+                    // Debug.Log($"Displayed clue in final slot: {clue.clueID}");
                     index++;
                 }
 

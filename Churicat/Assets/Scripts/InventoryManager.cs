@@ -10,9 +10,10 @@ using System.Linq;
 [Serializable]
 public class ClueData
 {
-    public string clueName;
+    public string clueID;
     public string imagePath;
     public string clueExplain;
+    public string clueName;
 }
 
 [Serializable]
@@ -27,6 +28,9 @@ public class InventoryManager : MonoBehaviour
     public List<ClueData> loadedClues = new List<ClueData>();  // data from json
     public TMP_Text ClueExplanation;
     public Image bigImage;
+    public TMP_Text ClueName;
+
+    private List<int> slotToClueIndex;
 
 
     void Start()
@@ -55,7 +59,7 @@ public class InventoryManager : MonoBehaviour
             /*
             foreach (var clue in loadedClues)
             {
-                Debug.Log($"Loaded Clue: {clue.clueName}, Path: {clue.imagePath}");
+                Debug.Log($"Loaded Clue: {clue.clueID}, Path: {clue.imagePath}");
             }
             */
         }
@@ -79,7 +83,7 @@ public class InventoryManager : MonoBehaviour
             {
                 slotImages[i].sprite = clueSprite;
                 slotImages[i].color = Color.white;
-                Debug.Log($"Displayed clue in slot: {loadedClues[i].clueName}");
+                Debug.Log($"Displayed clue in slot: {loadedClues[i].clueID}");
             }
 
             else
@@ -99,7 +103,7 @@ public class InventoryManager : MonoBehaviour
         int nextSlot40_49 = 30;  // clue40 ~ clue49
 
         // 각 슬롯에 해당하는 단서의 인덱스 저장
-        List<int> slotToClueIndex = new List<int>(new int[slotImages.Count]);
+        slotToClueIndex = new List<int>(new int[slotImages.Count]);
 
         for (int i = 0; i < slotToClueIndex.Count; i++)
         {
@@ -111,7 +115,7 @@ public class InventoryManager : MonoBehaviour
             var clue = loadedClues[i];
             int clueNumber;
 
-            if (int.TryParse(clue.clueName.Replace("Clue", ""), out clueNumber))
+            if (int.TryParse(clue.clueID.Replace("Clue", ""), out clueNumber))
             {
                 int slotIndex = -1;
 
@@ -145,7 +149,7 @@ public class InventoryManager : MonoBehaviour
                         slotImages[slotIndex].sprite = clueSprite;
                         slotImages[slotIndex].color = Color.white;
                         slotToClueIndex[slotIndex] = i;  // 해당 슬롯에 어떤 단서가 들어갔는지 인덱스 저장
-                        // Debug.Log($"Displayed clue in slot {slotIndex}: {clue.clueName}");
+                        // Debug.Log($"Displayed clue in slot {slotIndex}: {clue.clueID}");
                     }
                     else
                     {
@@ -207,6 +211,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (index >= 0 && index < loadedClues.Count)
         {
+            /*
             ClueData clue = loadedClues[index];
             ClueExplanation.text = clue.clueExplain;  // Display clue description
 
@@ -219,13 +224,32 @@ public class InventoryManager : MonoBehaviour
 
                 bigImage.preserveAspect = true;
             }
+            */
+
+            int clueIndex = slotToClueIndex[index];  // 슬롯 인덱스를 단서 인덱스로 변환
+
+            if (clueIndex >= 0 && clueIndex < loadedClues.Count)
+            {
+                ClueData clue = loadedClues[clueIndex];  // 단서 데이터를 가져옴
+                ClueExplanation.text = clue.clueExplain;  // 단서 설명 표시
+                ClueName.text = clue.clueName;
+
+                // 단서 이미지를 큰 이미지에 표시
+                Sprite clueSprite = Resources.Load<Sprite>(clue.imagePath);
+                if (clueSprite != null)
+                {
+                    bigImage.sprite = clueSprite;
+                    bigImage.color = Color.white;  // 이미지가 보이도록 설정
+                    bigImage.preserveAspect = true;
+                }
+            }
         }
     }
 
     public void AddClue(ClueData newClue)
     {
         // check if the clue already exists
-        if (!loadedClues.Any(c => c.clueName == newClue.clueName))
+        if (!loadedClues.Any(c => c.clueID == newClue.clueID))
         {
             loadedClues.Add(newClue);
             SaveInvenData();
@@ -233,7 +257,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         else{
-            Debug.Log($"Clue {newClue.clueName} already exists.");
+            Debug.Log($"Clue {newClue.clueID} already exists.");
         }
     }
 

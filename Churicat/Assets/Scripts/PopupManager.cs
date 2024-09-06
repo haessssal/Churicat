@@ -10,13 +10,13 @@ public class PopupManager : MonoBehaviour
     public GameObject OptionPopup;
     public GameObject HintPopup;
     public GameObject PausePopup;
-    public GameObject HomePopup;
     public GameObject Over1Popup;
     public GameObject Over2Popup;
     public GameObject Over3Popup;
     public GameObject RetryPopup;
     public GameObject CantbuyPopup;
     public GameObject InventoryPopup;
+    public GameObject CantRetryPopup;
 
     public GameObject DochiPopup;
     // public GameObject DogPopup;
@@ -32,12 +32,12 @@ public class PopupManager : MonoBehaviour
         OptionPopup.SetActive(false);
         HintPopup.SetActive(false);
         PausePopup.SetActive(false);
-        HomePopup.SetActive(false);
         Over1Popup.SetActive(false);
         RetryPopup.SetActive(false);
         CantbuyPopup.SetActive(false);
         InventoryPopup.SetActive(false);
         DochiPopup.SetActive(false);
+        CantRetryPopup.SetActive(false);
     }
 
     public void OpenPopup(string popupName)
@@ -55,9 +55,6 @@ public class PopupManager : MonoBehaviour
                 break;
             case "Pause":   
                 PausePopup.SetActive(true);
-                break;
-            case "Home":
-                HomePopup.SetActive(true);
                 break;
             case "Over1":
                 Over1Popup.SetActive(true);
@@ -79,6 +76,9 @@ public class PopupManager : MonoBehaviour
                 break;
             case "Dochi":
                 DochiPopup.SetActive(true);
+                break;
+            case "CantRetry":
+                CantRetryPopup.SetActive(true);
                 break;
         }
     }

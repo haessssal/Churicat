@@ -188,18 +188,20 @@ public class UIManager : MonoBehaviour
 
                     ClueDescription clueDescriptionComponent = clueObject.GetComponent<ClueDescription>();
                     string clueDescription1 = clueDescriptionComponent != null ? clueDescriptionComponent.clueTexts : "NO EXPLANATION";
-                    
+                    string clueDescription2 = clueDescriptionComponent != null ? clueDescriptionComponent.clueNames : "NO NAME";
+
                     // save clue data
                     ClueData newClue = new ClueData
                     {
-                        clueName = clueObject.name,
+                        clueID = clueObject.name,
                         imagePath = "Clues/" + clueObject.name,
-                        clueExplain = clueDescription1
+                        clueExplain = clueDescription1,
+                        clueName = clueDescription2
                     };
 
                     foundClues.Add(newClue);
 
-                    Debug.Log($"Added clue: {newClue.clueName}, Path: {newClue.imagePath}");
+                    Debug.Log($"Added clue: {newClue.clueID}, Path: {newClue.imagePath}");
 
                     // save as json file
                     SaveClueData();
@@ -234,7 +236,7 @@ public class UIManager : MonoBehaviour
 
         // 중복된 데이터 제거
         existingClueDataList.clues = existingClueDataList.clues
-            .GroupBy(c => c.clueName)
+            .GroupBy(c => c.clueID)
             .Select(g => g.First())
             .ToList();
 

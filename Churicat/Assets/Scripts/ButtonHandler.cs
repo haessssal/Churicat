@@ -43,7 +43,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnSkipButtonClick()
     {
-        SceneManager.LoadScene("CaseScene");
+        SceneManager.LoadScene("Map1Scene");
     }
 
     public void On201ButtonClick()
@@ -52,11 +52,12 @@ public class ButtonHandler : MonoBehaviour
         {
             SceneManager.LoadScene("Game1Scene");
             game1trycnt++;
+            gameManager.Save();
         }
         
         else
         {
-            StartCoroutine(ShowCantRetryText());
+            popupManager.OpenPopup("CantRetry");
         }
     }
 
@@ -71,7 +72,7 @@ public class ButtonHandler : MonoBehaviour
         
         else
         {
-            StartCoroutine(ShowCantRetryText());
+            popupManager.OpenPopup("CantRetry");
         }
     }
     
@@ -80,11 +81,12 @@ public class ButtonHandler : MonoBehaviour
         {
             SceneManager.LoadScene("Game3Scene");
             game3trycnt++;
+            gameManager.Save();
         }
         
         else
         {
-            StartCoroutine(ShowCantRetryText());
+            popupManager.OpenPopup("CantRetry");
         }
     }
     
@@ -93,11 +95,12 @@ public class ButtonHandler : MonoBehaviour
         {
             SceneManager.LoadScene("Game4Scene");
             game4trycnt++;
+            gameManager.Save();
         }
         
         else
         {
-            StartCoroutine(ShowCantRetryText());
+            popupManager.OpenPopup("CantRetry");
         }
     }
 
@@ -122,7 +125,7 @@ public class ButtonHandler : MonoBehaviour
     }
 
     public void OnCase1ButtonClick(){
-        SceneManager.LoadScene("Map1Scene");
+        SceneManager.LoadScene("IntroScene");
     }
 
     public void OnOptionButtonClick()
@@ -161,7 +164,7 @@ public class ButtonHandler : MonoBehaviour
                 List<ClueData> cluesToRemove = uiManager.GetFoundClues();
 
                 existingClueDataList.clues = existingClueDataList.clues
-                    .Where(clue => !cluesToRemove.Any(c => c.clueName == clue.clueName))
+                    .Where(clue => !cluesToRemove.Any(c => c.clueID == clue.clueID))
                     .ToList();
 
                 // JSON 파일에 업데이트된 데이터를 다시 저장
@@ -250,7 +253,7 @@ public class ButtonHandler : MonoBehaviour
 
             else
             {
-                StartCoroutine(ShowCantRetryText());
+                popupManager.OpenPopup("CantRetry");
             }
             
         }
@@ -261,12 +264,14 @@ public class ButtonHandler : MonoBehaviour
         }   
     }
 
+    /*
     private IEnumerator ShowCantRetryText()
     {
         CantRetryText.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         CantRetryText.gameObject.SetActive(false);
     }
+    */
 
     private void IncreaseTryCnt()
     {
