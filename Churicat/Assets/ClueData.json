@@ -1,29 +1,54 @@
 {
     "clues": [
         {
-            "clueName": "Clue29",
-            "imagePath": "Clues/Clue29",
-            "clueExplain": "text about clue29"
+            "clueName": "Clue19",
+            "imagePath": "Clues/Clue19",
+            "clueExplain": "NO EXPLANATION"
         },
         {
-            "clueName": "Clue26",
-            "imagePath": "Clues/Clue26",
-            "clueExplain": "text about clue 26"
+            "clueName": "Clue15",
+            "imagePath": "Clues/Clue15",
+            "clueExplain": "NO EXPLANATION"
         },
         {
-            "clueName": "Clue21",
-            "imagePath": "Clues/Clue21",
-            "clueExplain": "text about clue21"
+            "clueName": "Clue14",
+            "imagePath": "Clues/Clue14",
+            "clueExplain": "NO EXPLANATION"
         },
         {
-            "clueName": "Clue27",
-            "imagePath": "Clues/Clue27",
-            "clueExplain": "text about clue27"
+            "clueName": "Clue13",
+            "imagePath": "Clues/Clue13",
+            "clueExplain": "NO EXPLANATION"
         },
         {
-            "clueName": "Clue22",
-            "imagePath": "Clues/Clue22",
-            "clueExplain": "text about clue22"
+            "clueName": "Clue17",
+            "imagePath": "Clues/Clue17",
+            "clueExplain": "NO EXPLANATION"
+        },
+        {
+            "clueName": "Clue18",
+            "imagePath": "Clues/Clue18",
+            "clueExplain": "NO EXPLANATION"
+        },
+        {
+            "clueName": "Clue16",
+            "imagePath": "Clues/Clue16",
+            "clueExplain": "NO EXPLANATION"
+        },
+        {
+            "clueName": "Clue11",
+            "imagePath": "Clues/Clue11",
+            "clueExplain": "NO EXPLANATION"
+        },
+        {
+            "clueName": "Clue10",
+            "imagePath": "Clues/Clue10",
+            "clueExplain": "NO EXPLANATION"
+        },
+        {
+            "clueName": "Clue12",
+            "imagePath": "Clues/Clue12",
+            "clueExplain": "NO EXPLANATION"
         }
     ]
 }

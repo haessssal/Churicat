@@ -62,7 +62,7 @@ public class StarManager : MonoBehaviour
     {
         if (StarText != null)
         {
-            StarText.text = $"STAR x {StarInt}";
+            StarText.text = $"x {StarInt}";
         }
     }
 

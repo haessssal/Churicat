@@ -108,10 +108,10 @@ TextureImporter:
       name: Clue21_0
       rect:
         serializedVersion: 2
-        x: 162
-        y: 179
-        width: 176
-        height: 141
+        x: 149
+        y: 172
+        width: 186
+        height: 145
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc903eb8e4431a144a20403104899045
-      internalID: -1531674795
+      spriteID: 00842fc8d7e29b54196c5afba4da5a0c
+      internalID: -498660894
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Clue21_0: -1531674795
+      Clue21_0: -498660894
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

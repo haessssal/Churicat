@@ -108,10 +108,10 @@ TextureImporter:
       name: Clue22_0
       rect:
         serializedVersion: 2
-        x: 157
-        y: 177
-        width: 186
-        height: 145
+        x: 131
+        y: 179
+        width: 239
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34d9508943e2495488083eba8b4aafde
-      internalID: 284976523
+      spriteID: 240500dd9b00d434d84da0c58adf89e8
+      internalID: -309254742
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Clue22_0: 284976523
+      Clue22_0: -309254742
+      Clue22_1: 1805470045
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

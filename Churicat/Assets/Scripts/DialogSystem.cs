@@ -39,7 +39,7 @@ public class DialogSystem : MonoBehaviour
     private bool isFirst = true;  // 최초 1회만 호출하기 위함
     private int nowContentIndex = -1;
     private int nowSpeakerIndex = 0;
-    private float typingSpeed = 0.1f;
+    private float typingSpeed = 0.05f;
     private bool isTypingEffect = false;
     private UIManager uiManager;
 

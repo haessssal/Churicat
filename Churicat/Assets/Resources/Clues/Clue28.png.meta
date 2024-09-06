@@ -108,10 +108,10 @@ TextureImporter:
       name: Clue28_0
       rect:
         serializedVersion: 2
-        x: 162
-        y: 178
-        width: 177
-        height: 144
+        x: 149
+        y: 163
+        width: 211
+        height: 184
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ad7c7e516632bd4bb3f20ddee06f2a1
-      internalID: -1869390191
+      spriteID: 59c4abd266c714843ae128e3d4f52f57
+      internalID: 1583181893
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Clue28_0: -1869390191
+      Clue28_0: 1583181893
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
