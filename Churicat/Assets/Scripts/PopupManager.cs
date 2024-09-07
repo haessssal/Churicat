@@ -19,8 +19,8 @@ public class PopupManager : MonoBehaviour
     public GameObject CantRetryPopup;
 
     public GameObject DochiPopup;
-    // public GameObject DogPopup;
-    // public GameObject HamPopup;
+    public GameObject DogPopup;
+    public GameObject HamPopup;
 
     private UIManager uiManager;
 
@@ -38,6 +38,8 @@ public class PopupManager : MonoBehaviour
         InventoryPopup.SetActive(false);
         DochiPopup.SetActive(false);
         CantRetryPopup.SetActive(false);
+        DogPopup.SetActive(false);
+        HamPopup.SetActive(false);
     }
 
     public void OpenPopup(string popupName)
@@ -79,6 +81,12 @@ public class PopupManager : MonoBehaviour
                 break;
             case "CantRetry":
                 CantRetryPopup.SetActive(true);
+                break;
+            case "Dog":
+                DogPopup.SetActive(true);
+                break;
+            case "Ham":
+                HamPopup.SetActive(true);
                 break;
         }
     }

@@ -15,7 +15,7 @@ public class FinalClues : MonoBehaviour
     void Start()
     {
         LoadData();
-        DisplayCluesInFinal();
+        // DisplayCluesInFinal();
     }
 
     // get clue data from json
@@ -47,16 +47,33 @@ public class FinalClues : MonoBehaviour
         }
     }
 
-    void DisplayCluesInFinal()
+    public void DisplayCluesInFinal(string popup)
     { 
         // 슬롯 초기화
         foreach (var image in finalImages)
         {
             image.sprite = null;
+            image.preserveAspect = true;
         }
 
         // 해당 단서들만 슬롯에 추가
-        List<string> targetClues = new List<string> { "Clue21", "Clue22", "Clue23", "Clue24" };
+        // List<string> targetClues = new List<string> { "Clue10", "Clue11", "Clue12", "Clue14", "Clue18", "Clue19" };
+        
+        List<string> targetClues = new List<string>();
+
+        switch (popup)
+        {
+            case "Dochi":
+                targetClues = new List<string> { "Clue10", "Clue11", "Clue12", "Clue14", "Clue18", "Clue19" };
+                break;
+            case "Dog":
+                targetClues = new List<string> { "Clue20", "Clue21", "Clue22", "Clue26", "Clue27", "Clue29" };
+                break;
+            case "Ham":
+                targetClues = new List<string> { "Clue40", "Clue41", "Clue42", "Clue43", "Clue47", "Clue48" };
+                break;
+        }
+        
         int index = 0;
 
         foreach (var clue in inventoryManager.loadedClues)
@@ -70,6 +87,7 @@ public class FinalClues : MonoBehaviour
                 {
                     finalImages[index].sprite = clueSprite;
                     finalImages[index].color = Color.white; // 불투명하게 설정
+                    finalImages[index].preserveAspect = true;
                     // Debug.Log($"Displayed clue in final slot: {clue.clueID}");
                     index++;
                 }

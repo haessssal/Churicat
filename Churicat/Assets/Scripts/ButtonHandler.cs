@@ -22,6 +22,7 @@ public class ButtonHandler : MonoBehaviour
     public GameManager gameManager;
     public DialogSystem dialogSystem;
     public SwipeText swipeText;
+    public FinalClues finalClues;
 
     public bool isRight;
 
@@ -113,7 +114,7 @@ public class ButtonHandler : MonoBehaviour
 
         else 
         {
-            StartCoroutine(ShowLockedText());
+            popupManager.OpenPopup("CantRetry");
         }  
     }
 
@@ -125,7 +126,18 @@ public class ButtonHandler : MonoBehaviour
     }
 
     public void OnCase1ButtonClick(){
-        SceneManager.LoadScene("IntroScene");
+        SceneManager.LoadScene("Map1Scene");
+        // 원래는 introscene
+    }
+
+    public void OnCase2Button()
+    {
+        popupManager.OpenPopup("CantRetry");
+    }
+
+    public void OnCase3Button()
+    {
+        popupManager.OpenPopup("CantRetry");
     }
 
     public void OnOptionButtonClick()
@@ -194,7 +206,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnStarHintButtonClick()
     {
-        if (starManager.StarInt >= 2)
+        if (starManager.StarInt >= 1)
         {
             if (uiManager.ShowRandomHint())
             {
@@ -221,7 +233,14 @@ public class ButtonHandler : MonoBehaviour
     public void OnRetryButtonClick(GameObject retryButton)
     {
         popupManager.OpenPopup("Retry");
-        popupManager.ClosePopup(retryButton);
+        // popupManager.ClosePopup(retryButton);
+        StartCoroutine(CloseRetryPopupWithDelay(retryButton));
+    }
+
+    private IEnumerator CloseRetryPopupWithDelay(GameObject retryButton)
+    {
+        yield return new WaitForSeconds(0.5f); // 딜레이
+        popupManager.ClosePopup(retryButton); // 팝업을 닫는다
     }
 
     public void OnGet3starButtonClick()
@@ -241,7 +260,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnStarRetryButtonClick(GameObject starretryButton)
     {
-        if (starManager.StarInt >= 2)
+        if (starManager.StarInt >= 1)
         {
             if (CanRetry())
             {
@@ -304,13 +323,13 @@ public class ButtonHandler : MonoBehaviour
         switch (nowSceneName)
         {
             case "Game1Scene":
-                return game1trycnt < 4;
+                return game1trycnt <= 4;
             case "Game2Scene":
-                return game2trycnt < 4;
+                return game2trycnt <= 4;
             case "Game3Scene":
-                return game3trycnt < 4;
+                return game3trycnt <= 4;
             case "Game4Scene":
-                return game4trycnt < 4;
+                return game4trycnt <= 4;
             default:
                 Debug.LogWarning("Unknown scene: " + nowSceneName);
                 return false;
@@ -334,26 +353,29 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnDochiClick()
     {
-        WhoText.text = "DOCHI";
+        WhoText.text = "고슴도치";
         WhoText.gameObject.SetActive(true);
         animal = "Dochi";
         NextButton.SetActive(true);
+        finalClues.DisplayCluesInFinal("Dochi");
     }
 
     public void OnDogClick()
     {
-        WhoText.text = "DOG";
+        WhoText.text = "강아지";
         WhoText.gameObject.SetActive(true);
         animal = "Dog";
         NextButton.SetActive(true);
+        finalClues.DisplayCluesInFinal("Dog");
     }
 
     public void OnHamClick()
     {
-        WhoText.text = "HAM";
+        WhoText.text = "햄스터";
         WhoText.gameObject.SetActive(true);
         animal = "Ham";
         NextButton.SetActive(true);
+        finalClues.DisplayCluesInFinal("Ham");
     }
 
     public void OnNextButtonClick()

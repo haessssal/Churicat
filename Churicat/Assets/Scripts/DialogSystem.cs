@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 [System.Serializable]
 public struct Speaker
@@ -42,6 +44,8 @@ public class DialogSystem : MonoBehaviour
     private float typingSpeed = 0.05f;
     private bool isTypingEffect = false;
     private UIManager uiManager;
+    private string sceneName;
+
 
     /*
     [SerializeField]
@@ -54,9 +58,14 @@ public class DialogSystem : MonoBehaviour
 
         Setup();
 
-        if (isAutoStart)  // && dialogcnt < 1
+        int dialogCnt = PlayerPrefs.GetInt(sceneName + "DialogCnt", 0);
+
+        if (dialogCnt == 0)
         {
-            UpdateDialog();
+            if (isAutoStart)  // && dialogcnt < 1
+            {
+                UpdateDialog();
+            }
         }
     }
 
@@ -112,6 +121,8 @@ public class DialogSystem : MonoBehaviour
                     speakers[i].AnimalImage.gameObject.SetActive(false);
                 }
 
+                PlayerPrefs.SetInt(sceneName + "DialogCnt", 1);
+
                 // uiManager.SetDialogState(false);
                 return true;
             }
@@ -165,7 +176,7 @@ public class DialogSystem : MonoBehaviour
         
         // 화자 알파 값 변경
         Color color = speaker.AnimalImage.color;
-        color.a = visible == true ? 1 : 0.2f;
+        color.a = visible == true ? 1 : 0f;
         speaker.AnimalImage.color = color;
 
         dialogBackground.gameObject.SetActive(visible);

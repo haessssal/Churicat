@@ -44,9 +44,9 @@ public class StarManager : MonoBehaviour
 
     public void LoseStar()
     {
-        if (StarInt >= 2)
+        if (StarInt >= 1)
         {
-            StarInt -= 2;
+            StarInt -= 1;
             if (StarInt < 0) StarInt = 0; 
             UpdateStarText();
             gameManager.Save();

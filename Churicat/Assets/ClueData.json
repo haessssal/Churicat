@@ -1,6 +1,66 @@
 {
     "clues": [
         {
+            "clueID": "Clue41",
+            "imagePath": "Clues/Clue41",
+            "clueExplain": "유명작가 고슴도치의 책들이다. 책띠지까지 온전하게 함께 있다. ",
+            "clueName": "고슴도치가 쓴 책 "
+        },
+        {
+            "clueID": "Clue48",
+            "imagePath": "Clues/Clue48",
+            "clueExplain": "나사 형태의 조절 장치를 돌릴 수 있는 스패너. 별다른 특징은 없다. ",
+            "clueName": "스패너"
+        },
+        {
+            "clueID": "Clue49",
+            "imagePath": "Clues/Clue49",
+            "clueExplain": "침대보다 포근하고 효과적인 톱밥이다. 주기적으로 갈아주고 있는 듯하다. ",
+            "clueName": "톱밥 포대"
+        },
+        {
+            "clueID": "Clue40",
+            "imagePath": "Clues/Clue40",
+            "clueExplain": "대용량 손소독제이다. 주 성분인 에탄올은 쉽게 불이 붙는다. ",
+            "clueName": "손소독제"
+        },
+        {
+            "clueID": "Clue46",
+            "imagePath": "Clues/Clue46",
+            "clueExplain": "여러 공구가 들어있는 공구함. 수리를 혼자 도맡아 하는 것 같다. ",
+            "clueName": "공구함"
+        },
+        {
+            "clueID": "Clue42",
+            "imagePath": "Clues/Clue42",
+            "clueExplain": "벽에 잘 달라붙는 흡착 패드이다. 햄스터가 사용하기에는 조금 크지만 접착력은 확실해 보인다. ",
+            "clueName": "흡착 패드"
+        },
+        {
+            "clueID": "Clue47",
+            "imagePath": "Clues/Clue47",
+            "clueExplain": "인기 작가인 고슴도치가 그려진 포스터이다. 특전 행사 날짜가 적혀있다. ",
+            "clueName": "고슴도치 포스터"
+        },
+        {
+            "clueID": "Clue37",
+            "imagePath": "Clues/Clue37",
+            "clueExplain": "고슴도치의 가시가 떨어져있다. 과외할 때 떨어진걸까..? ",
+            "clueName": "고슴도치 가시"
+        },
+        {
+            "clueID": "Clue32",
+            "imagePath": "Clues/Clue32",
+            "clueExplain": "입구가 찌그러져 있는 금고이다. 안은 텅 비어있다..",
+            "clueName": "금고"
+        },
+        {
+            "clueID": "Clue31",
+            "imagePath": "Clues/Clue31",
+            "clueExplain": "잔뜩 구겨진 편지이다. 발신인이 강아지로 되어 있다.  ",
+            "clueName": "구겨진 편지"
+        },
+        {
             "clueID": "Clue39",
             "imagePath": "Clues/Clue39",
             "clueExplain": "당근이 달린 풍경이다. 바람에 날리면 종소리를 낸다. ",
@@ -19,40 +79,10 @@
             "clueName": "귀마개"
         },
         {
-            "clueID": "Clue37",
-            "imagePath": "Clues/Clue37",
-            "clueExplain": "고슴도치의 가시가 떨어져있다. 과외할 때 떨어진걸까..? ",
-            "clueName": "고슴도치 가시"
-        },
-        {
-            "clueID": "Clue31",
-            "imagePath": "Clues/Clue31",
-            "clueExplain": "잔뜩 구겨진 편지이다. 발신인이 강아지로 되어 있다.  ",
-            "clueName": "구겨진 편지"
-        },
-        {
-            "clueID": "Clue38",
-            "imagePath": "Clues/Clue38",
-            "clueExplain": "고슴도치와의 과외 스케줄이 기록되어있다. 여러 메모도 보인다. ",
-            "clueName": "공부 스케줄표"
-        },
-        {
-            "clueID": "Clue34",
-            "imagePath": "Clues/Clue34",
-            "clueExplain": "웃고 있는 토끼의 모습이 담긴 사진이다. 사진 속 토끼는 행복해보인다. ",
-            "clueName": "토끼 사진 액자"
-        },
-        {
-            "clueID": "Clue14",
-            "imagePath": "Clues/Clue14",
-            "clueExplain": "피로감과 스트레스에 효과가 좋은 향초이다. 라이터보단 성냥이 더 잘 어울리겠지. ",
-            "clueName": "향초와 성냥"
-        },
-        {
-            "clueID": "Clue11",
-            "imagePath": "Clues/Clue11",
-            "clueExplain": "튼튼해보이는 밧줄이다. 한 마리의 동물을 지탱하기에 충분해보인다. ",
-            "clueName": "밧줄"
+            "clueID": "Clue36",
+            "imagePath": "Clues/Clue36",
+            "clueExplain": "여러 책들이 쌓여있다. 평소에 많은 책을 읽는 듯하다. ",
+            "clueName": "책 더미"
         },
         {
             "clueID": "Clue19",
@@ -67,6 +97,24 @@
             "clueName": "액자"
         },
         {
+            "clueID": "Clue11",
+            "imagePath": "Clues/Clue11",
+            "clueExplain": "튼튼해보이는 밧줄이다. 한 마리의 동물을 지탱하기에 충분해보인다. ",
+            "clueName": "밧줄"
+        },
+        {
+            "clueID": "Clue14",
+            "imagePath": "Clues/Clue14",
+            "clueExplain": "피로감과 스트레스에 효과가 좋은 향초이다. 라이터보단 성냥이 더 잘 어울리겠지. ",
+            "clueName": "향초와 성냥"
+        },
+        {
+            "clueID": "Clue15",
+            "imagePath": "Clues/Clue15",
+            "clueExplain": "고급지고 무게감 있다. 날카로운 펜촉 덕에 글쓰기가 좀 더 즐거울 것 같다. ",
+            "clueName": "만년필"
+        },
+        {
             "clueID": "Clue13",
             "imagePath": "Clues/Clue13",
             "clueExplain": "매우 푹신해보이는 슬리퍼다. 이걸 신으면 아무 소리도 나지 않을 것 같다. ",
@@ -76,13 +124,7 @@
             "clueID": "Clue10",
             "imagePath": "Clues/Clue10",
             "clueExplain": "토끼와의 과외 스케줄이 기록된 캘린더이다. 토끼의 작품에 대한 칭찬과 메모도 적혀 있다. ",
-            "clueName": "토끼와의 과외 스케줄표  "
-        },
-        {
-            "clueID": "Clue15",
-            "imagePath": "Clues/Clue15",
-            "clueExplain": "고급지고 무게감 있다. 날카로운 펜촉 덕에 글쓰기가 좀 더 즐거울 것 같다. ",
-            "clueName": "만년필"
+            "clueName": "과외 스케줄표  "
         },
         {
             "clueID": "Clue12",
@@ -95,78 +137,6 @@
             "imagePath": "Clues/Clue16",
             "clueExplain": "껴안고 자기 딱 좋은 크기의 곰인형. 아주 부드럽고 포근해보인다. ",
             "clueName": "곰인형"
-        },
-        {
-            "clueID": "Clue18",
-            "imagePath": "Clues/Clue18",
-            "clueExplain": "상비약과 비타민이 들어있다. 옆에는 커다란 영양제통도 함께 있다.  ",
-            "clueName": "약통"
-        },
-        {
-            "clueID": "Clue41",
-            "imagePath": "Clues/Clue41",
-            "clueExplain": "유명작가 고슴도치의 책들이다. 책띠지까지 온전하게 함께 있다. ",
-            "clueName": "고슴도치가 쓴 책 "
-        },
-        {
-            "clueID": "Clue49",
-            "imagePath": "Clues/Clue49",
-            "clueExplain": "침대보다 포근하고 효과적인 톱밥이다. 주기적으로 갈아주고 있는 듯하다. ",
-            "clueName": "톱밥 포대"
-        },
-        {
-            "clueID": "Clue46",
-            "imagePath": "Clues/Clue46",
-            "clueExplain": "여러 공구가 들어있는 공구함. 수리를 혼자 도맡아 하는 것 같다. ",
-            "clueName": "공구함"
-        },
-        {
-            "clueID": "Clue40",
-            "imagePath": "Clues/Clue40",
-            "clueExplain": "대용량 손소독제이다. 주 성분인 에탄올은 쉽게 불이 붙는다. ",
-            "clueName": "손소독제"
-        },
-        {
-            "clueID": "Clue48",
-            "imagePath": "Clues/Clue48",
-            "clueExplain": "나사 형태의 조절 장치를 돌릴 수 있는 스패너. 별다른 특징은 없다. ",
-            "clueName": "스패너"
-        },
-        {
-            "clueID": "Clue43",
-            "imagePath": "Clues/Clue43",
-            "clueExplain": "업무 화면이 띄워져 있다. 햄스터는 재택 근무를 하는 것으로 보인다. ",
-            "clueName": "컴퓨터"
-        },
-        {
-            "clueID": "Clue21",
-            "imagePath": "Clues/Clue21",
-            "clueExplain": "정성스럽게 쓴 편지이다. 수신인은 토끼로 되어있지만, 전해지지 못한 것으로 보인다. ",
-            "clueName": "뜯어본 편지"
-        },
-        {
-            "clueID": "Clue20",
-            "imagePath": "Clues/Clue20",
-            "clueExplain": "피해자인 토끼가 찍힌 사진이다. 사진의 구도가 마치 뒤에서 몰래 찍은 것 같다. ",
-            "clueName": "토끼의 사진"
-        },
-        {
-            "clueID": "Clue22",
-            "imagePath": "Clues/Clue22",
-            "clueExplain": "별다른 특징이 없는 담배와 라이터다. 고등학생이 소지하기엔 적합하지 않아 보인다.. ",
-            "clueName": "담배와 라이"
-        },
-        {
-            "clueID": "Clue26",
-            "imagePath": "Clues/Clue26",
-            "clueExplain": "검은색 덤벨들 속 유일하게 노란색인 덤벨. 별다른 이유는 없어보인다. ",
-            "clueName": "노란색 덤벨"
-        },
-        {
-            "clueID": "Clue25",
-            "imagePath": "Clues/Clue25",
-            "clueExplain": "ATP를 생산해 높은 운동강도를 실시할 수 있게 해주는 크레아틴. 운동 전에 항상 먹는 편이다.  ",
-            "clueName": "크레아틴 통"
         }
     ]
 }

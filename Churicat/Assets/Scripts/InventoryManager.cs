@@ -143,6 +143,7 @@ public class InventoryManager : MonoBehaviour
                 // 가능한 slotIndex 일 때만 삽입
                 if (slotIndex >= 0 && slotIndex < slotImages.Count)
                 {
+                    
                     Sprite clueSprite = Resources.Load<Sprite>(clue.imagePath);
                     if (clueSprite != null)
                     {
@@ -198,7 +199,9 @@ public class InventoryManager : MonoBehaviour
             
             if (button != null)
             {
-                button.onClick.AddListener(() => OnClueClicked(index));
+                button.onClick.RemoveAllListeners();  // 기존 리스너 제거
+                button.onClick.AddListener(() => OnClueClicked(slotToClueIndex[index])); 
+                // button.onClick.AddListener(() => OnClueClicked(index));
             }
 
             slotImages[i].preserveAspect = true;
@@ -207,41 +210,36 @@ public class InventoryManager : MonoBehaviour
         bigImage.preserveAspect = true;
     }
 
-    public void OnClueClicked(int index)
+    public void OnClueClicked(int clueIndex)
     {
-        if (index >= 0 && index < loadedClues.Count)
-        {
-            /*
-            ClueData clue = loadedClues[index];
-            ClueExplanation.text = clue.clueExplain;  // Display clue description
+        /*
+        ClueData clue = loadedClues[index];
+        ClueExplanation.text = clue.clueExplain;  // Display clue description
 
-            // Display clue image in the bigimage
+        // Display clue image in the bigimage
+        Sprite clueSprite = Resources.Load<Sprite>(clue.imagePath);
+        if (clueSprite != null)
+        {
+            bigImage.sprite = clueSprite;
+            bigImage.color = Color.white;  // Ensure image is visible
+
+            bigImage.preserveAspect = true;
+        }
+        */
+
+        if (clueIndex >= 0 && clueIndex < loadedClues.Count)
+        {
+            ClueData clue = loadedClues[clueIndex];  // 올바른 단서 데이터 1!
+            ClueExplanation.text = clue.clueExplain;  
+            ClueName.text = clue.clueName;
+
+            // 단서 이미지를 큰 이미지로 
             Sprite clueSprite = Resources.Load<Sprite>(clue.imagePath);
             if (clueSprite != null)
             {
                 bigImage.sprite = clueSprite;
-                bigImage.color = Color.white;  // Ensure image is visible
-
+                bigImage.color = Color.white;
                 bigImage.preserveAspect = true;
-            }
-            */
-
-            int clueIndex = slotToClueIndex[index];  // 슬롯 인덱스를 단서 인덱스로 변환
-
-            if (clueIndex >= 0 && clueIndex < loadedClues.Count)
-            {
-                ClueData clue = loadedClues[clueIndex];  // 단서 데이터를 가져옴
-                ClueExplanation.text = clue.clueExplain;  // 단서 설명 표시
-                ClueName.text = clue.clueName;
-
-                // 단서 이미지를 큰 이미지에 표시
-                Sprite clueSprite = Resources.Load<Sprite>(clue.imagePath);
-                if (clueSprite != null)
-                {
-                    bigImage.sprite = clueSprite;
-                    bigImage.color = Color.white;  // 이미지가 보이도록 설정
-                    bigImage.preserveAspect = true;
-                }
             }
         }
     }
