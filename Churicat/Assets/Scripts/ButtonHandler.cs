@@ -39,7 +39,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnStartButtonClick()
     {
-        SceneManager.LoadScene("IntroScene"); 
+        SceneManager.LoadScene("CaseScene"); 
     }
 
     public void OnSkipButtonClick()
@@ -126,7 +126,7 @@ public class ButtonHandler : MonoBehaviour
     }
 
     public void OnCase1ButtonClick(){
-        SceneManager.LoadScene("Map1Scene");
+        SceneManager.LoadScene("IntroScene");
         // 원래는 introscene
     }
 
@@ -404,14 +404,16 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnDecisionButtonClick()
     {
-        if (animal == "Dochi" && scrollView1SwipeText.nowText == "Word1" && scrollView2SwipeText.nowText == "Word4")
+        if (animal == "Ham" && scrollView1SwipeText.nowText == "WordCorrect1" && scrollView2SwipeText.nowText == "WordCorrect2  ")
         {
             isRight = true;
+            popupManager.OpenPopup("IsRight");
         }
 
         else
         {
             isRight = false;
+            popupManager.OpenPopup("IsNotRight");
         }
 
         Debug.Log("isRight: " + isRight);

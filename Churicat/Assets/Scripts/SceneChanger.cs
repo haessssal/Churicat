@@ -43,7 +43,7 @@ public class SceneChanger : MonoBehaviour
 
     public void ChangeFinal1Scene(string sceneName)
     {
-        if (buttonHandler.final1trycnt < 4)
+        if (buttonHandler.final1trycnt < 4 && buttonHandler.game1trycnt >= 1 && buttonHandler.game2trycnt >= 1 && buttonHandler.game3trycnt >= 1 && buttonHandler.game4trycnt >= 1)
         {
             LoadSceneManager.LoadScene("Final1Scene");
         }

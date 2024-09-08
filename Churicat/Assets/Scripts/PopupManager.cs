@@ -21,6 +21,8 @@ public class PopupManager : MonoBehaviour
     public GameObject DochiPopup;
     public GameObject DogPopup;
     public GameObject HamPopup;
+    public GameObject IsRightPopup;
+    public GameObject IsNotRightPopup;
 
     private UIManager uiManager;
 
@@ -40,6 +42,8 @@ public class PopupManager : MonoBehaviour
         CantRetryPopup.SetActive(false);
         DogPopup.SetActive(false);
         HamPopup.SetActive(false);
+        IsRightPopup.SetActive(false);
+        IsNotRightPopup.SetActive(false);
     }
 
     public void OpenPopup(string popupName)
@@ -87,6 +91,12 @@ public class PopupManager : MonoBehaviour
                 break;
             case "Ham":
                 HamPopup.SetActive(true);
+                break;
+            case "IsRight":
+                IsRightPopup.SetActive(true);
+                break;
+            case "IsNotRight":
+                IsNotRightPopup.SetActive(true);
                 break;
         }
     }

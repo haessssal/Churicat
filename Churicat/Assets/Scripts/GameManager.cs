@@ -15,6 +15,31 @@ public class GameManager : MonoBehaviour
     public static InventoryManager inventoryManager;
     public static ButtonHandler buttonHandler;
 
+    public static GameManager instance;
+    public AudioSource backgroundMusic;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // 씬 전환 시에도 파괴되지 않도록 설정
+        }
+        else
+        {
+            Destroy(gameObject); // 이미 존재하면 새로 생성된 것은 파괴
+        }
+    }
+
+    public void ChangeBackgroundMusic(AudioClip newClip)
+    {
+        if (backgroundMusic.clip != newClip)
+        {
+            backgroundMusic.clip = newClip;
+            backgroundMusic.Play();
+        }
+    }
+
     private void Start()
     {
         Load();

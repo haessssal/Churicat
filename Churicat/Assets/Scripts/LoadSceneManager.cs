@@ -31,9 +31,9 @@ public class LoadSceneManager : MonoBehaviour
         {
             yield return null;
             timer += Time.deltaTime;
-            slider.value = timer / 3f;  
+            slider.value = timer / 2.5f;  
 
-            if (timer >= 3)  // 로딩 3초 이상일 때 씬 넘어감
+            if (timer >= 2.5)  // 로딩 2.5초 이상일 때 씬 넘어감
             {
                 op.allowSceneActivation = true;
             }
